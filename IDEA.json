@@ -1,0 +1,91 @@
+{
+  "title": "GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben",
+  "pitch": "For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).",
+  "platform": "web",
+  "language": "de",
+  "targetQueries": [
+    "gaeb x84 erstellen",
+    "gaeb x84 konverter",
+    "x83 datei öffnen",
+    "gaeb x83 x84",
+    "gaeb x84 öffnen",
+    "gaeb angebot abgeben ohne software"
+  ],
+  "evidence": [
+    {
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "note": "Comparison of 9 GAEB tools with prices: GAEB-Online 120/180 EUR (Windows 10/11), Wingaebxml Bietertool 125-600 EUR (X83/X84 explicit), T&T 99-2,499 EUR, DanglIT WebGAEB free in the browser with a single download. Undated page, (c) 2026; accessed.",
+      "date": "2026-11-13"
+    },
+    {
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=de&q=gaeb%20x84",
+      "note": "10 autocomplete variants: x84 datei, in x83 umwandeln, in excel umwandeln, öffnen, einlesen, konverter, x83 x84",
+      "date": "2026-11-13"
+    },
+    {
+      "url": "https://www.softguide.de/programm/gaeblv",
+      "note": "Search result seen (not opened): mein.gaeb-365.online, a GAEB tool for trades that also handles Formblatt 221",
+      "date": "2026-11-13"
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Wingaebxml Bietertool",
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "verdict": "solid",
+      "gap": "Desktop licence 125-600 EUR one-off; OS not stated; overkill for occasional bidders"
+    },
+    {
+      "name": "GAEB-Online 2025",
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "verdict": "solid",
+      "gap": "Windows 10/11 only, 120 EUR one-off; X84 not named in the comparison"
+    },
+    {
+      "name": "T&T Datentechnik GAEB-Konverter",
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "verdict": "solid",
+      "gap": "Package pricing from 99 EUR up to 2,499 EUR; OS not stated"
+    },
+    {
+      "name": "DanglIT WebGAEB",
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "verdict": "partial",
+      "gap": "Free browser converter, but download possible only once and pricing an X84 is not confirmed"
+    },
+    {
+      "name": "Trade software suites (e.g. STREIT)",
+      "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+      "verdict": "partial",
+      "gap": "Full ERP with prices on request; too much for a few tenders a year"
+    }
+  ],
+  "trigger": {
+    "what": "standing need",
+    "date": "",
+    "url": ""
+  },
+  "window": "Standing gap. The paid tools are Windows desktop programs sold as one-off licences (GAEB-Online needs Windows 10/11), and the free web converter allows one download and does not say it can price an X84. Nothing hosted is aimed at a trade that bids a few times a year.",
+  "monetizationIdea": "Small trades pay 89 EUR a year (or 12 EUR per tender) to price and export schema-valid X84 bids without buying a Windows desktop licence.",
+  "money": {
+    "payer": "A construction trade business with 1-20 staff that bids on public tenders a few times a year and has no AVA software with GAEB",
+    "buys": "A schema-valid X84 file the client's AVA software accepts, without retyping hundreds of positions or buying a 120-600 EUR licence. An invalid or missing data file can weaken or disqualify a bid.",
+    "model": "subscription",
+    "price": "89 EUR a year, or 12 EUR per exported tender",
+    "priceEur": 89,
+    "billing": "year",
+    "proof": [
+      {
+        "url": "https://www.streit-software.de/wissen/gaeb-konverter",
+        "note": "Bidders pay 120 EUR (GAEB-Online), 125-600 EUR (Wingaebxml, X83/X84) or 99 EUR+ (T&T) for this job",
+        "date": "2026-11-13"
+      }
+    ],
+    "nobodyPaysIf": "The free WebGAEB or a trial of a trade suite already lets them enter prices and export X84, or the trade does so few tenders that a one-off desktop licence is cheaper over three years."
+  },
+  "risks": [
+    "The GAEB schema documentation may need registration with the GAEB body; check before building",
+    "A wrongly exported bid would cause angry users: validate against the official schema and show a summary before export"
+  ],
+  "edge": "Works in any browser (Mac, Linux, tablet) with no install or sign-up, and the file never leaves the device. GAEB-Online needs Windows 10/11 (STREIT comparison), and WebGAEB allows one download and does not state X84 pricing."
+}
