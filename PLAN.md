@@ -90,3 +90,11 @@ A designer who looked at the real pages said: Looks like a real tool made for te
 - [x] [Visual round 1] 'So läuft es ab' looks like a generic three-equal-columns row with tiny 96 px spots. Build the .steps-lv LV excerpt from DESIGN §9: three rows under a 2 px Farbband rule, each with the spot at 200 px, an OZ (01/02/03) in Courier, the title and one sentence, and a right-aligned price column (0,00 € …
 - [x] [Visual round 1] On desktop the hero floats with about 60 px of empty space above the drop zone. Bottom-align it (.intro align-items: end, padding-bottom 0) so its ground rule sits on the drop zone's top edge, as drawn in DESIGN §8.
 - [x] [Visual round 1] At 390 px '19' and '€' break onto separate lines in the facts paragraph. Use a non-breaking space before € and units everywhere (19 € netto, 79 € netto). Turn 'Formate' into the short typed list from DESIGN §9 (Liest · Schreibt · Nicht) in Courier, separated by a 1 px rule, so the section is no lon…
+
+## QA round 1
+
+- [ ] [QA round 1] Official GAEB samples and XSDs are missing (criteria 1, 2, 7, 15). X84 element names and order (UP, IT, Totals, CTR, alternative/Bedarf markers) are still XSD-TODO and the synthetic X83 fixtures were… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,153, tests/schema/xsd.test.ts)
+- [ ] [QA round 1] Bidder text complements (TextComplement) are not parsed, not listed in the check panel and not written in the X84; no lump-sum or Zulage flag either. SPEC §5 and §6 require them. Implement in parse.t… (src/lib/gaeb/parse.ts, check.ts, export84.ts)
+- [ ] [QA round 1] Files are read with file.text() (always UTF-8). ISO-8859-1 or windows-1252 GAEB files lose umlauts and the damaged text goes into the X84. Read arrayBuffer, take the encoding from the XML declaration… (src/components/PricingTool.tsx:67)
+- [ ] [QA round 1] Entering any Freischaltcode shows 'Code gespeichert und geprüft.' without verifying it; an invalid, expired or wrong-LV code gives no error. Verify with verifyToken first and show a clear German erro… (src/components/PricingTool.tsx:189-195)
+- [ ] [QA round 1] npm audit --omit=dev reports 1 critical (astro), 3 high (sharp, zod, esbuild) and 1 low, with fixes available via --force. Upgrade astro, its integrations and sharp, re-run test, build and build:prev… (package.json, package-lock.json)
