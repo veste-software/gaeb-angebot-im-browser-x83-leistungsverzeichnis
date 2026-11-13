@@ -1,13 +1,14 @@
 import { useMemo, useRef, useState } from 'preact/hooks';
 import type { Category, Item, Lv } from '../lib/gaeb/model';
 import { GaebParseError, parseGaeb } from '../lib/gaeb/parse';
+import { detectUnsupported } from '../lib/gaeb/unsupported';
 import { computeTotals, excludedReason, type Prices } from '../lib/gaeb/totals';
 import { centsToInput, formatEUR, formatQty, parseGermanNumber, toCents } from '../lib/gaeb/number';
 import { checkBid } from '../lib/gaeb/check';
 import { emptyBidder, exportX84, x84FileName, type Bidder } from '../lib/gaeb/export84';
 import { Stamp } from './Stamp';
 
-type Phase = { name: 'empty' } | { name: 'reading'; file: string } | { name: 'error'; message: string } | { name: 'done' };
+type Phase = { name: 'empty' } | { name: 'reading'; file: string } | { name: 'error'; message: string; unsupported?: boolean } | { name: 'done' };
 
 function toPrices(inputs: Record<string, string>): Prices {
   const out: Prices = {};
@@ -38,6 +39,11 @@ export default function PricingTool() {
     setPhase({ name: 'reading', file: file.name });
     try {
       const text = await file.text();
+      const blocked = detectUnsupported(text);
+      if (blocked.length > 0) {
+        setPhase({ name: 'error', message: blocked.map((b) => b.message).join(' '), unsupported: true });
+        return;
+      }
       const parsed = parseGaeb(text);
       if (parsed.phase !== 83 && parsed.phase !== 84) {
         throw new GaebParseError('Diese Datei ist weder ein Leistungsverzeichnis (X83) noch ein Angebot (X84).');
@@ -111,7 +117,7 @@ export default function PricingTool() {
       <div>
         {phase.name === 'error' && (
           <div class="notice-error tool-error" role="alert">
-            <h2 class="label">Datei nicht lesbar</h2>
+            <h2 class="label">{phase.unsupported ? 'NICHT UNTERSTÜTZT' : 'Datei nicht lesbar'}</h2>
             <p>{phase.message}</p>
             <p class="muted">Wählen Sie eine .X83-Datei im Format GAEB DA XML 3.1 bis 3.3. Ältere Formate (D83, P83) werden nicht unterstützt.</p>
           </div>
@@ -119,7 +125,7 @@ export default function PricingTool() {
         <div class={`dropzone${over ? ' is-over' : ''}`} {...dropProps}>
           <p class="dropzone__heads" aria-hidden="true">OZ TEXT MENGE EH EP GP</p>
           <label class="btn btn-primary btn-large" for="lv-file">X83-Datei auswählen</label>
-          <input id="lv-file" class="visually-hidden" type="file" accept=".x83,.X83,.x84,.X84,.xml" onChange={(e) => void open((e.currentTarget as HTMLInputElement).files?.[0])} />
+          <input id="lv-file" class="visually-hidden" type="file" accept=".x83,.X83,.x84,.X84,.xml,.d83,.D83,.p83,.P83" onChange={(e) => void open((e.currentTarget as HTMLInputElement).files?.[0])} />
           <p class="dropzone__hint">
             oder .X83-Datei hierher ziehen
             <span class="dropzone__example">z. B. Leistungsverzeichnis_Malerarbeiten.X83</span>
