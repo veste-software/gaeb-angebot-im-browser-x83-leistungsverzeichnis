@@ -10,6 +10,16 @@ import { Stamp } from './Stamp';
 import { fingerprint } from '../lib/gaeb/fingerprint';
 import { clearAll, loadState, saveState } from '../lib/storage.browser';
 import { restoredMessage } from '../lib/saved';
+import { TOKEN_KEY } from '../lib/storage.browser';
+import { startCheckout, type Product } from '../lib/unlock/checkout';
+import { verifyToken } from '../lib/unlock/token';
+import { track } from '../lib/track';
+
+const PUBLIC_KEY = (import.meta.env.PUBLIC_UNLOCK_KEY as string | undefined) ?? '';
+
+function readToken(): string {
+  try { return localStorage.getItem(TOKEN_KEY) ?? ''; } catch { return ''; }
+}
 
 type Phase = { name: 'empty' } | { name: 'reading'; file: string } | { name: 'error'; message: string; unsupported?: boolean } | { name: 'done' };
 
@@ -33,6 +43,12 @@ export default function PricingTool() {
   const [downloaded, setDownloaded] = useState(false);
   const [fp, setFp] = useState('');
   const [restored, setRestored] = useState('');
+  const [dialog, setDialog] = useState(false);
+  const [token, setToken] = useState('');
+  const [valid, setValid] = useState(false);
+  const [payMsg, setPayMsg] = useState('');
+  const [codeInput, setCodeInput] = useState('');
+  const [busy, setBusy] = useState(false);
   const sheetRef = useRef<HTMLDivElement>(null);
 
   const prices = useMemo(() => toPrices(inputs), [inputs]);
@@ -99,8 +115,55 @@ export default function PricingTool() {
     el?.focus();
   }
 
+  useEffect(() => { setToken(readToken()); }, []);
+
+  useEffect(() => {
+    if (!token || !fp || !PUBLIC_KEY) { setValid(false); return; }
+    let live = true;
+    void verifyToken(token, PUBLIC_KEY, { fingerprint: fp, now: Math.floor(Date.now() / 1000) }).then((p) => { if (live) setValid(p !== null); });
+    return () => { live = false; };
+  }, [token, fp]);
+
+  useEffect(() => {
+    const id = new URLSearchParams(location.search).get('session_id');
+    if (!id) return;
+    void (async () => {
+      try {
+        const res = await fetch(`/api/unlock?session_id=${encodeURIComponent(id)}`);
+        const body = (await res.json().catch(() => ({}))) as { token?: string; error?: string };
+        if (!res.ok || !body.token) { setPayMsg(body.error ?? 'Die Zahlung konnte nicht bestätigt werden.'); return; }
+        localStorage.setItem(TOKEN_KEY, body.token);
+        setToken(body.token);
+        track('unlock_ok');
+        setPayMsg('Zahlung bestätigt. Öffnen Sie Ihre Datei erneut; Ihre Preise werden wiederhergestellt.');
+      } catch {
+        setPayMsg('Die Freischaltung ist hier nicht erreichbar. Versuchen Sie es auf der Live-Seite erneut.');
+      }
+    })();
+  }, []);
+
+  async function buy(product: Product) {
+    setBusy(true);
+    setPayMsg('');
+    try {
+      track('checkout_started', { product });
+      location.href = await startCheckout(product, fp);
+    } catch (e) {
+      setPayMsg(e instanceof TypeError ? 'Die Bezahlung ist hier nicht erreichbar (kein Server unter /api).' : (e as Error).message);
+      setBusy(false);
+    }
+  }
+
+  function applyCode() {
+    const c = codeInput.trim();
+    if (!c) return;
+    try { localStorage.setItem(TOKEN_KEY, c); } catch { /* ignore */ }
+    setToken(c);
+    setPayMsg('Code gespeichert und geprüft.');
+  }
+
   function download() {
-    if (!lv || !check?.canExport) return;
+    if (!lv || !check?.canExport || !valid) return;
     const out = exportX84(xml, prices, bidder);
     const url = URL.createObjectURL(new Blob([out], { type: 'application/xml' }));
     const a = document.createElement('a');
@@ -109,6 +172,8 @@ export default function PricingTool() {
     a.click();
     URL.revokeObjectURL(url);
     setDownloaded(true);
+    setDialog(false);
+    track('x84_exported');
   }
 
   useEffect(() => {
@@ -271,9 +336,35 @@ export default function PricingTool() {
             </div>
           ))}
 
-          <button type="button" class="btn btn-primary btn-large" disabled={!check.canExport} onClick={download}>X84 erstellen</button>
+          <button type="button" class="btn btn-primary btn-large" disabled={!check.canExport} onClick={() => setDialog(true)}>X84 erstellen – 19 € netto</button>
           {!check.canExport && <p class="muted">Der Export ist frei, sobald kein Punkt mit [!] mehr offen ist.</p>}
           <button type="button" class="btn btn-secondary" onClick={() => void wipe()}>Alles löschen</button>
+          {dialog && (
+            <dialog open class="notice" aria-labelledby="pay-title" onKeyDown={(e) => { if (e.key === 'Escape') setDialog(false); }}>
+              <h2 id="pay-title" class="label">Zusammenfassung</h2>
+              <p>{lv.items.length} Positionen, Angebotssumme netto {formatEUR(totals.net)}. Bitte die Angebotssumme mit Ihrem Angebotsschreiben abgleichen.</p>
+              {valid ? (
+                <>
+                  <p>Ihr Freischaltcode (zum Kopieren): <code>{token}</code></p>
+                  <button type="button" class="btn btn-primary" autofocus onClick={download}>X84 herunterladen</button>
+                </>
+              ) : (
+                <>
+                  <button type="button" class="btn btn-primary" disabled={busy} onClick={() => void buy('single')}>Einzelangebot 19 € netto</button>
+                  <button type="button" class="btn btn-secondary" disabled={busy} onClick={() => void buy('year')}>Jahrespass 79 € netto</button>
+                  <p class="muted">Preise zuzüglich Umsatzsteuer. Ihr Leistungsverzeichnis wird nicht übertragen.</p>
+                  <div class="field">
+                    <label for="code">Freischaltcode eingeben</label>
+                    <input id="code" value={codeInput} onInput={(e) => setCodeInput((e.currentTarget as HTMLInputElement).value)} />
+                  </div>
+                  <button type="button" class="btn btn-secondary" onClick={applyCode}>Code prüfen</button>
+                </>
+              )}
+              {payMsg && <p role="status">{payMsg}</p>}
+              <button type="button" class="btn btn-secondary" onClick={() => setDialog(false)}>Schließen</button>
+            </dialog>
+          )}
+          {!dialog && payMsg && <p role="status">{payMsg}</p>}
           {downloaded && <p role="status">Gespeichert als {x84FileName(fileName)}. Bitte die Angebotssumme mit Ihrem Angebotsschreiben abgleichen.</p>}
         </aside>
       </div>
