@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-label="Nicht unterstützt: ein Blatt in fremdem Format, mit Rotstift durchgestrichen.">
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="2.4" height="8" fill="#22302A"/>
+    </pattern>
+  </defs>
+
+  <!-- A page in a format we cannot write: no columns, no green bars, just records -->
+  <g transform="rotate(-5 240 170)">
+    <rect x="152" y="56" width="200" height="250" fill="url(#hatch)"/>
+    <rect x="140" y="44" width="200" height="250" fill="#F4F6EE" stroke="#22302A" stroke-width="3"/>
+    <line x1="166" y1="46" x2="166" y2="292" stroke="#22302A" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <g fill="#22302A">
+      <circle cx="153" cy="66" r="4.5"/><circle cx="153" cy="98" r="4.5"/><circle cx="153" cy="130" r="4.5"/><circle cx="153" cy="162" r="4.5"/>
+      <circle cx="153" cy="194" r="4.5"/><circle cx="153" cy="226" r="4.5"/><circle cx="153" cy="258" r="4.5"/>
+      <rect x="178" y="72" width="120" height="5"/><rect x="178" y="94" width="96" height="5"/>
+      <rect x="178" y="116" width="140" height="5"/><rect x="178" y="138" width="70" height="5"/>
+      <rect x="178" y="160" width="132" height="5"/><rect x="178" y="182" width="110" height="5"/>
+      <rect x="178" y="204" width="84" height="5"/><rect x="178" y="226" width="126" height="5"/>
+      <rect x="178" y="248" width="60" height="5"/>
+    </g>
+  </g>
+
+  <!-- Struck through with the red correction pencil, two passes per stroke -->
+  <g fill="none" stroke="#B3261E" stroke-width="3" stroke-linecap="round">
+    <path d="M184 100L304 236M188 96L308 230"/>
+    <path d="M302 98L186 234M306 102L192 238"/>
+  </g>
+
+  <!-- The red pencil -->
+  <g transform="translate(282 306) rotate(-24)">
+    <polygon points="0,0 10,-3 10,3" fill="#22302A"/>
+    <polygon points="10,-4 30,-10 30,10 10,4" fill="#F4F6EE" stroke="#22302A" stroke-width="3"/>
+    <rect x="30" y="-10" width="130" height="20" fill="#B3261E" stroke="#22302A" stroke-width="3"/>
+    <rect x="40" y="-5" width="110" height="3" fill="#F4F6EE"/>
+    <rect x="160" y="-10" width="14" height="20" fill="#DDEBD7" stroke="#22302A" stroke-width="3"/>
+    <rect x="174" y="-10" width="16" height="20" fill="#22302A"/>
+  </g>
+</svg>

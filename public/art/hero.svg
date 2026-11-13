@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-label="Ein Leistungsverzeichnis auf Endlospapier: links ohne Preise, rechts mit blau eingetragenen Preisen, Summe und dem Stempel „geprüft“. Ein Kugelschreiber schreibt den letzten Preis.">
+  <defs>
+    <!-- Shadows are drawn as hatching, never as blur. -->
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="3" height="10" fill="#22302A"/>
+    </pattern>
+    <!-- One column of punched sprocket holes, 40 apart. -->
+    <g id="holes" fill="#22302A">
+      <circle cy="0" r="6"/><circle cy="40" r="6"/><circle cy="80" r="6"/><circle cy="120" r="6"/>
+      <circle cy="160" r="6"/><circle cy="200" r="6"/><circle cy="240" r="6"/><circle cy="280" r="6"/>
+      <circle cy="320" r="6"/><circle cy="360" r="6"/><circle cy="400" r="6"/>
+    </g>
+    <!-- Priced rows (X84): typed OZ, short text, quantity and GP in Farbband; EP handwritten in Kuli-Blau. -->
+    <g id="ra">
+      <g fill="#22302A"><rect x="12" y="12" width="32" height="6"/><rect x="56" y="12" width="150" height="6"/><rect x="250" y="12" width="28" height="6"/><rect x="358" y="12" width="40" height="6"/></g>
+      <path d="M292 18q4-9 8 0t8 0t8 0M320 21l2 4M326 18q4-9 8 0t8 0" fill="none" stroke="#1B3E9C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="rb">
+      <g fill="#22302A"><rect x="12" y="12" width="32" height="6"/><rect x="56" y="12" width="112" height="6"/><rect x="258" y="12" width="20" height="6"/><rect x="366" y="12" width="32" height="6"/></g>
+      <path d="M292 18q4-9 8 0t8 0M312 21l2 4M318 18q4-9 8 0t8 0" fill="none" stroke="#1B3E9C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="rc">
+      <g fill="#22302A"><rect x="12" y="12" width="32" height="6"/><rect x="56" y="12" width="170" height="6"/><rect x="246" y="12" width="32" height="6"/><rect x="352" y="12" width="46" height="6"/></g>
+      <path d="M292 18q4-9 8 0t8 0t8 0t8 0M328 21l2 4M334 18q4-9 8 0" fill="none" stroke="#1B3E9C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Unpriced rows (X83): typed text, an empty dotted fill-in line where the price goes. -->
+    <g id="rd">
+      <g fill="#22302A"><rect x="10" y="12" width="30" height="6"/><rect x="50" y="12" width="136" height="6"/><rect x="198" y="12" width="28" height="6"/></g>
+      <line x1="238" y1="22" x2="282" y2="22" stroke="#22302A" stroke-width="2" stroke-dasharray="2 4"/>
+    </g>
+    <g id="re">
+      <g fill="#22302A"><rect x="10" y="12" width="30" height="6"/><rect x="50" y="12" width="92" height="6"/><rect x="206" y="12" width="20" height="6"/></g>
+      <line x1="238" y1="22" x2="282" y2="22" stroke="#22302A" stroke-width="2" stroke-dasharray="2 4"/>
+    </g>
+    <g id="rf">
+      <g fill="#22302A"><rect x="10" y="12" width="30" height="6"/><rect x="50" y="12" width="120" height="6"/><rect x="198" y="12" width="28" height="6"/></g>
+      <line x1="238" y1="22" x2="282" y2="22" stroke="#22302A" stroke-width="2" stroke-dasharray="2 4"/>
+    </g>
+  </defs>
+
+  <!-- Ground rule -->
+  <line x1="40" y1="668" x2="1160" y2="668" stroke="#22302A" stroke-width="4"/>
+
+  <!-- The fan-fold stack both pages come from: the rest of the continuous paper -->
+  <g stroke="#22302A" stroke-width="4">
+    <rect x="72" y="652" width="820" height="16" fill="#DDEBD7"/>
+    <rect x="58" y="636" width="820" height="16" fill="#F4F6EE"/>
+    <rect x="72" y="620" width="820" height="16" fill="#DDEBD7"/>
+  </g>
+
+  <!-- LEFT: the tender as it arrives (X83), no prices yet -->
+  <g>
+    <rect x="80" y="170" width="380" height="450" fill="#F4F6EE" stroke="#22302A" stroke-width="4"/>
+    <line x1="112" y1="172" x2="112" y2="618" stroke="#22302A" stroke-width="2" stroke-dasharray="6 6"/>
+    <use href="#holes" x="96" y="194"/>
+    <g fill="#22302A">
+      <rect x="122" y="190" width="22" height="6"/><rect x="162" y="190" width="60" height="6"/>
+      <rect x="306" y="190" width="26" height="6"/><rect x="352" y="190" width="26" height="6"/>
+    </g>
+    <line x1="112" y1="210" x2="458" y2="210" stroke="#22302A" stroke-width="2"/>
+    <g transform="translate(112 216)">
+      <rect x="0" y="0" width="346" height="90" fill="#DDEBD7"/>
+      <rect x="0" y="180" width="346" height="90" fill="#DDEBD7"/>
+      <use href="#rd" y="0"/><use href="#re" y="30"/><use href="#rf" y="60"/>
+      <use href="#re" y="90"/><use href="#rd" y="120"/><use href="#rf" y="150"/>
+      <use href="#rd" y="180"/><use href="#rf" y="210"/><use href="#re" y="240"/>
+      <use href="#rf" y="270"/><use href="#rd" y="300"/><use href="#re" y="330"/>
+      <!-- Red correction pencil under the OZ of two missing prices -->
+      <g stroke="#B3261E" stroke-width="4" stroke-linecap="round">
+        <line x1="7" y1="144" x2="43" y2="146"/>
+        <line x1="7" y1="294" x2="43" y2="292"/>
+      </g>
+    </g>
+    <g stroke="#22302A" stroke-width="2">
+      <line x1="300" y1="590" x2="398" y2="590"/>
+      <line x1="300" y1="596" x2="398" y2="596"/>
+    </g>
+  </g>
+
+  <!-- RIGHT: the same LV priced, checked and ready to hand in (X84) -->
+  <rect x="414" y="74" width="480" height="546" fill="url(#hatch)"/>
+  <g>
+    <rect x="400" y="60" width="480" height="560" fill="#F4F6EE" stroke="#22302A" stroke-width="4"/>
+    <line x1="436" y1="62" x2="436" y2="618" stroke="#22302A" stroke-width="2" stroke-dasharray="6 6"/>
+    <line x1="844" y1="62" x2="844" y2="618" stroke="#22302A" stroke-width="2" stroke-dasharray="6 6"/>
+    <use href="#holes" x="418" y="84"/>
+    <use href="#holes" x="862" y="84"/>
+    <g fill="#22302A">
+      <circle cx="418" cy="524" r="6"/><circle cx="418" cy="564" r="6"/><circle cx="418" cy="604" r="6"/>
+      <circle cx="862" cy="524" r="6"/><circle cx="862" cy="564" r="6"/><circle cx="862" cy="604" r="6"/>
+      <rect x="448" y="88" width="24" height="6"/><rect x="492" y="88" width="70" height="6"/>
+      <rect x="686" y="88" width="28" height="6"/><rect x="736" y="88" width="30" height="6"/>
+      <rect x="798" y="88" width="30" height="6"/>
+    </g>
+    <line x1="436" y1="110" x2="844" y2="110" stroke="#22302A" stroke-width="2"/>
+    <g transform="translate(436 118)">
+      <rect x="0" y="0" width="408" height="90" fill="#DDEBD7"/>
+      <rect x="0" y="180" width="408" height="90" fill="#DDEBD7"/>
+      <use href="#ra" y="0"/><use href="#rb" y="30"/><use href="#rc" y="60"/>
+      <use href="#ra" y="90"/><use href="#rc" y="120"/><use href="#rb" y="150"/>
+      <use href="#rb" y="180"/><use href="#ra" y="210"/><use href="#rc" y="240"/>
+      <use href="#ra" y="270"/><use href="#rb" y="300"/><use href="#rc" y="330"/>
+    </g>
+    <!-- Net total under a double rule -->
+    <g stroke="#22302A" stroke-width="2">
+      <line x1="690" y1="494" x2="836" y2="494"/>
+      <line x1="690" y1="500" x2="836" y2="500"/>
+    </g>
+    <rect x="690" y="516" width="40" height="6" fill="#22302A"/>
+    <rect x="756" y="512" width="80" height="12" fill="#22302A"/>
+  </g>
+
+  <!-- The stamp: pressed only when nothing is missing -->
+  <g transform="rotate(-7 560 548)" fill="none" stroke="#1B3E9C">
+    <circle cx="560" cy="548" r="58" stroke-width="4"/>
+    <circle cx="560" cy="548" r="44" stroke-width="2"/>
+    <circle cx="560" cy="548" r="51" stroke-width="5" stroke-dasharray="5 4"/>
+    <path d="M538 548l14 14 26-30" stroke-width="6"/>
+  </g>
+
+  <!-- The ballpoint: the thing that turns one page into the other -->
+  <g transform="translate(792 486) rotate(-40)">
+    <polygon points="0,0 44,-14 474,-14 474,14 44,14" fill="url(#hatch)"/>
+  </g>
+  <g transform="translate(778 466) rotate(-40)" stroke-linejoin="miter">
+    <polygon points="0,0 14,-4 14,4" fill="#22302A"/>
+    <polygon points="14,-5 44,-14 44,14 14,5" fill="#F4F6EE" stroke="#22302A" stroke-width="4"/>
+    <rect x="44" y="-14" width="74" height="28" fill="#22302A"/>
+    <g fill="#DDEBD7"><rect x="58" y="-14" width="4" height="28"/><rect x="72" y="-14" width="4" height="28"/><rect x="86" y="-14" width="4" height="28"/></g>
+    <rect x="118" y="-14" width="282" height="28" fill="#1B3E9C" stroke="#22302A" stroke-width="4"/>
+    <rect x="134" y="-6" width="236" height="4" fill="#F4F6EE"/>
+    <rect x="400" y="-14" width="58" height="28" fill="#22302A"/>
+    <rect x="458" y="-8" width="16" height="16" fill="#22302A"/>
+    <rect x="380" y="-26" width="84" height="10" fill="#22302A"/>
+  </g>
+</svg>

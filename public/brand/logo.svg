@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="LV-Bepreiser">
+  <!-- The mark: a sheet of tender printout with its punched sprocket margin, two green bars,
+       and the round blue "geprüft" stamp pressed over its lower corner. Flat colours only. -->
+  <rect x="8" y="5" width="40" height="52" fill="#F4F6EE" stroke="#22302A" stroke-width="4"/>
+  <line x1="20.5" y1="7" x2="20.5" y2="55" stroke="#22302A" stroke-width="2" stroke-dasharray="3 3"/>
+  <circle cx="14.5" cy="14" r="2.8" fill="#22302A"/>
+  <circle cx="14.5" cy="26" r="2.8" fill="#22302A"/>
+  <circle cx="14.5" cy="38" r="2.8" fill="#22302A"/>
+  <circle cx="14.5" cy="50" r="2.8" fill="#22302A"/>
+  <rect x="22" y="11" width="24" height="9" fill="#DDEBD7"/>
+  <rect x="22" y="27" width="24" height="9" fill="#DDEBD7"/>
+  <circle cx="46" cy="46" r="13" fill="#F4F6EE" stroke="#1B3E9C" stroke-width="4"/>
+  <path d="M40 46.5l4.2 4.2 7.8-8.6" fill="none" stroke="#1B3E9C" stroke-width="3.6" stroke-linecap="square"/>
+</svg>

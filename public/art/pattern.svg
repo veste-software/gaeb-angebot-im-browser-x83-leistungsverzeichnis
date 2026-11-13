@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" width="32" height="40">
+  <!-- One tile of the sprocket margin (Lochrand): repeat-y down the edge of a sheet or the drop zone.
+       The dash period (8) divides the tile height (40), so the perforation runs on without a seam. -->
+  <rect width="32" height="40" fill="#F4F6EE"/>
+  <circle cx="15" cy="20" r="6" fill="#DDEBD7" stroke="#22302A" stroke-width="2"/>
+  <line x1="31" y1="0" x2="31" y2="40" stroke="#22302A" stroke-width="2" stroke-dasharray="4 4"/>
+</svg>

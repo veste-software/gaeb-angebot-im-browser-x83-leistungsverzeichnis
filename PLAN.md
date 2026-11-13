@@ -4,6 +4,8 @@ Read `SPEC.md`, `DESIGN.md` and `CLAUDE.md` first. Order: a thin, working tool e
 
 **Note from the Architect:** shell access was blocked in the scaffolding run, so the scaffold was written by hand and **has not been installed, built or tested yet**. Task 1 does that.
 
+- [ ] Use the brand kit: import src/styles/brand.css everywhere, put the logo in the header, build the first screen as described in DESIGN.md with the working tool visible at once, place the hero and spot illustrations
+
 ## Foundation
 
 - [ ] 1. **Install and prove the scaffold green.** Run `npm install` (creates `package-lock.json`, which CI's `npm ci` needs), then `npm test`, `npm run build`, `npm run build:preview`, `npm run lint`, `npm run design-check`. Fix only scaffold mistakes (a wrong version range, a type error). Done when all six commands exit 0 and `dist/preview`-style links in the preview build start with `/preview/` (open `dist/index.html` and check the favicon and nav hrefs).
