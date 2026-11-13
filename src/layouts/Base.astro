@@ -12,9 +12,6 @@ const { title, description } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const nav = [
   { href: 'x84-erstellen', label: 'X84 erstellen' },
-  { href: 'x83-in-pdf', label: 'X83 als PDF' },
-  { href: 'x84-pruefen', label: 'X84 prüfen' },
-  { href: 'preise', label: 'Preise' },
   { href: 'hilfe', label: 'Hilfe' },
 ];
 ---
@@ -33,14 +30,7 @@ const nav = [
   <body>
     <header class="wrap no-print site-header">
       <a href={url()} class="brand" aria-label="LV-Bepreiser – Startseite">
-        <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
-          <rect x="1" y="3" width="34" height="30" fill="#f4f6ee" stroke="#22302a" stroke-width="2" />
-          <rect x="9" y="8" width="23" height="6" fill="#ddebd7" />
-          <rect x="9" y="22" width="23" height="6" fill="#ddebd7" />
-          <circle cx="5" cy="10" r="1.8" fill="#22302a" />
-          <circle cx="5" cy="18" r="1.8" fill="#22302a" />
-          <circle cx="5" cy="26" r="1.8" fill="#22302a" />
-        </svg>
+        <img src={url('brand/logo.svg')} width="36" height="36" alt="" />
         <span>LV-Bepreiser</span>
       </a>
       <nav aria-label="Hauptnavigation">

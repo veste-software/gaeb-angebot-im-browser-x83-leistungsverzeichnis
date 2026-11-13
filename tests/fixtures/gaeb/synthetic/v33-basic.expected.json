@@ -1,0 +1,14 @@
+{
+  "version": "3.3",
+  "phase": 83,
+  "projectName": "Malerarbeiten Grundschule Süd",
+  "itemCount": 5,
+  "categoryCount": 2,
+  "oz": ["01.0010", "01.0020", "02.0010", "02.0020", "02.0030"],
+  "qty": [125.5, 40, 310.25, 1, 18.75],
+  "qu": ["m²", "m", "m²", "psch", "m²"],
+  "shortText": ["Untergrund reinigen", "Fensterbänke abkleben", "Fassadenfarbe, zweifach gestrichen", "Gerüst vorhalten, Straßenseite", "Flurwände, Dispersionsfarbe"],
+  "prices": { "01.0010": 2.35, "01.0020": 1.2, "02.0010": 14.8, "02.0020": 1850, "02.0030": 9.99 },
+  "gp": { "01.0010": 294.93, "01.0020": 48, "02.0010": 4591.7, "02.0020": 1850, "02.0030": 187.31 },
+  "netTotal": 6971.94
+}

@@ -24,3 +24,24 @@
   --shadow-*: initial;
   --shadow-hard: 3px 3px 0 #22302a;
 }
+
+/* The pricing tool (PricingTool.tsx) */
+.tool-section { padding-bottom: var(--s-7); }
+.tool__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-4); }
+.tool__title { margin: 0; font-size: var(--fs-h2); }
+.tool__grid { display: grid; gap: var(--s-6); align-items: start; }
+.tool__side { padding-block: var(--s-3); }
+.tool__side .bidder-title { margin-top: var(--s-6); }
+.tool__side .btn { width: 100%; margin-top: var(--s-3); }
+.tool-error { margin-bottom: var(--s-5); }
+.lv .ep .fill-in--ep { width: 100%; max-width: 13ch; }
+.lv-row details { margin-top: var(--s-1); }
+.lv-row summary { cursor: pointer; font-size: var(--fs-small); color: var(--ink-muted); min-height: 32px; }
+.lv-row .longtext { margin: var(--s-1) 0; white-space: pre-line; font-family: var(--font-text); }
+.lv .text { overflow-wrap: anywhere; }
+.total { margin-top: var(--s-5); }
+.total p { margin: 0; text-align: right; }
+@media (min-width: 1100px) {
+  .tool__grid { grid-template-columns: minmax(0, 1fr) 320px; }
+  .tool__side { position: sticky; top: var(--s-4); }
+}

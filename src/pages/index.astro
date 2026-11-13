@@ -1,52 +1,31 @@
 ---
 import Base from '../layouts/Base.astro';
-// The Builder replaces the static drop zone below with the <PricingTool client:load /> island
-// (PLAN.md, task 4). Keep the headline, the result sentence and the privacy line above the fold.
+import PricingTool from '../components/PricingTool';
+import { url } from '../lib/paths';
 ---
 <Base
   title="X83-Datei öffnen, bepreisen und als X84 abgeben – im Browser"
   description="GAEB-Leistungsverzeichnis (X83) im Browser öffnen, Einheitspreise eintragen, Summen prüfen und als X84-Angebot speichern. Ohne Installation, die Datei bleibt auf Ihrem Rechner."
 >
   <section class="wrap intro">
-    <h1>X83-Datei öffnen, Preise eintragen, als X84 abgeben.</h1>
-    <p class="lead">Sie sehen Ihr Leistungsverzeichnis in Sekunden, tragen die Einheitspreise ein und erhalten eine geprüfte X84-Datei für die Vergabeplattform.</p>
+    <div class="intro__text">
+      <h1>X83-Datei öffnen, Preise eintragen, als X84 abgeben.</h1>
+      <p class="lead">Sie sehen Ihr Leistungsverzeichnis in Sekunden, tragen die Einheitspreise ein und erhalten eine geprüfte X84-Datei für die Vergabeplattform.</p>
+    </div>
+    <img class="intro__art" src={url('art/hero.svg')} width="460" height="276" alt="" />
   </section>
 
-  <section class="wrap" aria-label="Leistungsverzeichnis öffnen">
-    <div class="dropzone sheet" id="dropzone">
-      <label class="btn btn-primary" for="lv-file">X83-Datei auswählen</label>
-      <input id="lv-file" class="visually-hidden" type="file" accept=".x83,.X83,.x84,.X84,.xml" />
-      <p class="figures hint">oder .X83-Datei hierher ziehen<br /><span class="example">z. B. Leistungsverzeichnis_Malerarbeiten.X83</span></p>
-    </div>
-    <p class="figures privacy">Ihre Datei wird nur in diesem Browser verarbeitet und nicht hochgeladen.</p>
+  <section class="wrap tool-section" aria-label="Leistungsverzeichnis bepreisen">
+    <PricingTool client:load />
   </section>
 </Base>
 
 <style>
-  .intro { padding-top: var(--s-6); padding-bottom: var(--s-5); }
+  .intro { display: grid; gap: var(--s-5); align-items: center; padding-top: var(--s-5); padding-bottom: var(--s-5); }
   .intro h1 { max-width: 18ch; }
-  .lead { font-size: var(--fs-h3); line-height: 1.4; margin: 0; }
-  .dropzone {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--s-4);
-    padding-block: var(--s-6);
-    padding-inline: calc(var(--sprocket) + var(--s-5));
-    background: var(--band);
-    border: 2px dashed var(--farbband);
+  .intro__art { display: none; width: 100%; height: auto; }
+  @media (min-width: 900px) {
+    .intro { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .intro__art { display: block; max-height: 276px; }
   }
-  .dropzone::after { display: none; }
-  .hint { margin: 0; font-size: var(--fs-table); }
-  .example { opacity: 0.8; }
-  .privacy { margin-top: var(--s-3); font-size: var(--fs-table); }
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-  .dropzone:focus-within .btn-primary { outline: 3px solid var(--kuli); outline-offset: 2px; }
 </style>

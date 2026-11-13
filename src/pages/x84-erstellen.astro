@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PricingTool from '../components/PricingTool';
+---
+<Base
+  title="X84 erstellen: GAEB-Angebot aus dem X83-Leistungsverzeichnis"
+  description="So wird aus einem X83-Leistungsverzeichnis ein X84-Angebot: Preise eintragen, Summen prüfen, Datei speichern und mit dem Angebotsschreiben abgeben."
+>
+  <section class="wrap page-head">
+    <h1>X84 erstellen</h1>
+    <p class="lead">Öffnen Sie die X83-Datei der Ausschreibung, tragen Sie Ihre Einheitspreise ein und speichern Sie das Angebot als X84.</p>
+  </section>
+
+  <section class="wrap tool-section" aria-label="Leistungsverzeichnis bepreisen">
+    <PricingTool client:load />
+  </section>
+
+  <section class="wrap prose">
+    <h2>Was X83 und X84 sind</h2>
+    <p>GAEB-Dateien tragen die Phase im Namen. Die Ausschreibung kommt als <strong>X83</strong> (Phase 83, „Angebotsaufforderung“). Ihr Angebot geben Sie als <strong>X84</strong> (Phase 84, „Angebotsabgabe“) zurück. Die Positionen, Ordnungszahlen und Mengen bleiben dabei unverändert. Neu sind Ihre Einheitspreise, die Gesamtpreise, die Summen und Ihre Firmenanschrift.</p>
+
+    <h2>Das Format muss zur Ausschreibung passen</h2>
+    <p>Dieses Werkzeug liest GAEB DA XML 3.1, 3.2 und 3.3 und schreibt die X84-Datei in derselben Version wie das Leistungsverzeichnis. Ältere Formate (D83, P83) und ÖNORM-Dateien werden nicht unterstützt.</p>
+
+    <h2>Was der Auftraggeber prüft</h2>
+    <p>Die Vergabestelle liest Ihre X84-Datei maschinell ein und vergleicht sie mit ihrem Leistungsverzeichnis. Fehlende Preise bei Pflichtpositionen, geänderte Mengen oder falsche Summen fallen dort auf. Das Werkzeug prüft deshalb vor dem Speichern, ob alle Pflichtpositionen bepreist sind. Ob ein Auftraggeber Ihr Angebot annimmt, kann es nicht beurteilen.</p>
+
+    <h2>Bedarfs- und Wahlpositionen</h2>
+    <p>Bedarfspositionen ohne Gesamtbetrag und Wahl- oder Alternativpositionen erhalten einen Einheitspreis, zählen aber nicht in die Angebotssumme. In der Liste sind sie entsprechend gekennzeichnet.</p>
+
+    <h2>Abgeben</h2>
+    <p>Laden Sie die X84-Datei gemeinsam mit Ihrem Angebotsschreiben auf der Vergabeplattform hoch. Gleichen Sie die Angebotssumme vorher mit dem Angebotsschreiben ab.</p>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-top: var(--s-6); padding-bottom: var(--s-4); }
+  .prose { max-width: var(--measure); margin-inline: 0; padding-bottom: var(--s-7); }
+  .prose h2 { margin-top: var(--s-6); }
+</style>
