@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** specced · **Platform:** web · **Score:** 3.2/5 · **Spend:** $1.82
+**Stage:** planned · **Platform:** web · **Score:** 3.2/5 · **Spend:** $3.39
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -14,6 +14,12 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 4] Before go-live, import one exported X84 into a real AVA program (e.g. a GAEB-Online or ORCA AVA trial on Windows) and run the bvbs.de GAEB-XML-Checker on it
 - [ ] [task 5] Add the site to Google Search Console and submit the sitemap
 - [ ] [task 6] Switch Stripe to live mode after the steps above
+- [ ] [task 7] If the Builder cannot reach the network, run `npm run fetch:gaeb` once to download the official GAEB 3.1–3.3 samples and XSDs into tests/fixtures/gaeb/official/ and commit them
+- [ ] [task 8] Create a Stripe account in test mode with two one-off prices (19 EUR and 79 EUR net, VAT via Stripe Tax, invoice creation on) and set STRIPE_SECRET_KEY, STRIPE_PRICE_SINGLE, STRIPE_PRICE_YEAR in Cloudflare Pages
+- [ ] [task 9] Generate an Ed25519 keypair; store the private key as the secret UNLOCK_SIGNING_KEY and the public key as PUBLIC_UNLOCK_KEY in Cloudflare Pages
+- [ ] [task 10] Register a domain, connect Cloudflare Pages and set SITE_URL
+- [ ] [task 11] Before going live, import one exported X84 into a real AVA program and run the bvbs.de GAEB-XML-Checker on it
+- [ ] [task 12] Add the site to Google Search Console and submit the sitemap; switch Stripe to live mode only after the steps above
 
 ## Recommendation
 
@@ -63,3 +69,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 
 - 2026-11-13 21:18 · scouted · ranked first in the daily pool (aggregate 3.55 of 5 by 2 independent rankers); the studio builds the day's best candidate whatever its score, and the prototype is how it is judged
 - 2026-11-13 21:30 · specced · spec written
+- 2026-11-13 21:41 · planned · scaffold and plan written
