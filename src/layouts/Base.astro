@@ -57,14 +57,15 @@ const nav = [
       <slot />
     </main>
     <footer class="wrap no-print site-footer">
-      <hr class="rule" />
+      <div class="footer-strip" style={`background-image:url(${url('art/pattern.svg')})`} aria-hidden="true"></div>
+      <a href={url()} class="footer-brand brand-lockup"><img src={url('brand/logo.svg')} width="32" height="32" alt="" /><span>LV-Bepreiser</span></a>
       <nav class="footer-nav" aria-label="Seiten">
         <ul>
-          {nav.map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
+          {nav.filter((n) => n.href !== 'hilfe').map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
         </ul>
       </nav>
       <p class="figures">
-        <a href={url('impressum')}>Impressum</a> · <a href={url('datenschutz')}>Datenschutz</a> · <a href={url('hilfe')}>Hilfe</a>
+        <a href={url('impressum')}>Impressum</a> · <a href={url('datenschutz')}>Datenschutz</a>
       </p>
     </footer>
   </body>

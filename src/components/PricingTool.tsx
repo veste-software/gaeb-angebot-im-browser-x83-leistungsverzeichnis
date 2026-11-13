@@ -265,8 +265,9 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
           <label class="btn btn-primary btn-large" for="lv-file">X83-Datei auswählen</label>
           <input id="lv-file" class="visually-hidden" type="file" accept=".x83,.X83,.x84,.X84,.xml,.d83,.D83,.p83,.P83" onChange={(e) => void open((e.currentTarget as HTMLInputElement).files?.[0])} />
           <p class="dropzone__hint">
-            oder die Datei hierher ziehen
-            <span class="dropzone__example">z. B. Leistungsverzeichnis_Malerarbeiten.X83</span>
+            <span class="dropzone__hint-mouse">oder die Datei hierher ziehen</span>
+            <span class="dropzone__hint-touch">Datei aus „Downloads“ oder „Dateien“ wählen</span>
+            <span class="dropzone__example">z. B. LV_Malerarbeiten.X83</span>
           </p>
           </div>
         </div>
