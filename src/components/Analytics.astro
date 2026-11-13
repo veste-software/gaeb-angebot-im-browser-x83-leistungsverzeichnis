@@ -1,0 +1,21 @@
+---
+/**
+ * Cookie-free analytics, both optional and off unless their env var is set at build time:
+ * - PUBLIC_CF_BEACON_TOKEN: Cloudflare Web Analytics (page views, no cookies).
+ * - PUBLIC_PLAUSIBLE_DOMAIN (+ optional PUBLIC_PLAUSIBLE_SRC): Plausible (page views and the
+ *   custom events sent by src/lib/track.ts, no cookies).
+ * Nothing about the LV is ever sent; events carry only fixed names and coarse props.
+ */
+const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC || 'https://plausible.io/js/script.js';
+---
+{cfToken && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token: cfToken })}
+  ></script>
+)}
+{plausibleDomain && <script is:inline defer data-domain={plausibleDomain} src={plausibleSrc}></script>}

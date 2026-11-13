@@ -54,6 +54,11 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - Fewer than 5 paid unlocks in Stripe live mode by 2027-04-30
 - Pause sales if an exported X84 is reported rejected by a client's AVA program and the cause cannot be fixed in one build session
 
+## Links
+
+- Repo: https://github.com/veste-software/gaeb-angebot-im-browser-x83-leistungsverzeichnis
+- Preview (GitHub Pages, builds from main): https://veste-software.github.io/gaeb-angebot-im-browser-x83-leistungsverzeichnis/
+
 ## History
 
 - 2026-11-13 21:18 · scouted · ranked first in the daily pool (aggregate 3.55 of 5 by 2 independent rankers); the studio builds the day's best candidate whatever its score, and the prototype is how it is judged

@@ -1,0 +1,39 @@
+{
+  "name": "lv-bepreiser",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "astro build",
+    "build:preview": "SITE_URL=https://example.github.io SITE_BASE=/preview astro build",
+    "test": "vitest run",
+    "test:schema": "vitest run --config vitest.schema.config.ts",
+    "lint": "astro check",
+    "design-check": "node scripts/design-check.mjs",
+    "fetch:gaeb": "node scripts/fetch-gaeb.mjs",
+    "size": "node scripts/size.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.0",
+    "@astrojs/sitemap": "^3.4.0",
+    "@fontsource/courier-prime": "^5.2.0",
+    "@fontsource/zilla-slab": "^5.2.0",
+    "@noble/ed25519": "^2.2.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@xmldom/xmldom": "^0.9.8",
+    "astro": "^5.13.0",
+    "idb-keyval": "^6.2.1",
+    "preact": "^10.26.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "fflate": "^0.8.2",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}

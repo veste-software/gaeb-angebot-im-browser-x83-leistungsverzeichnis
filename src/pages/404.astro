@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/paths';
+---
+<Base title="Seite nicht gefunden – LV-Bepreiser" description="Diese Seite gibt es nicht. Zurück zum LV-Bepreiser.">
+  <section class="wrap missing">
+    <p class="label">Position 404 · Menge 0 · EP fehlt</p>
+    <h1>Diese Seite steht nicht im Leistungsverzeichnis.</h1>
+    <p>Vielleicht wurde sie gestrichen wie eine entfallene Position. Ihr LV und Ihre Preise sind davon nicht betroffen: sie liegen weiter in diesem Browser.</p>
+    <p><a class="btn btn-primary" href={url()}>Zur Startseite</a></p>
+  </section>
+</Base>
+
+<style>
+  .missing { padding-block: var(--s-7); }
+  .missing .label { color: var(--rotstift); text-decoration: line-through; }
+</style>

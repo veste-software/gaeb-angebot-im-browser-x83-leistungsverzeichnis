@@ -1,0 +1,97 @@
+---
+import '@fontsource/zilla-slab/400.css';
+import '@fontsource/zilla-slab/600.css';
+import '@fontsource/zilla-slab/700.css';
+import '@fontsource/courier-prime/400.css';
+import '@fontsource/courier-prime/700.css';
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import { url } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const nav = [
+  { href: 'x84-erstellen', label: 'X84 erstellen' },
+  { href: 'x83-in-pdf', label: 'X83 als PDF' },
+  { href: 'x84-pruefen', label: 'X84 prüfen' },
+  { href: 'preise', label: 'Preise' },
+  { href: 'hilfe', label: 'Hilfe' },
+];
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <meta name="theme-color" content="#f4f6ee" />
+    <Analytics />
+  </head>
+  <body>
+    <header class="wrap no-print site-header">
+      <a href={url()} class="brand" aria-label="LV-Bepreiser – Startseite">
+        <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+          <rect x="1" y="3" width="34" height="30" fill="#f4f6ee" stroke="#22302a" stroke-width="2" />
+          <rect x="9" y="8" width="23" height="6" fill="#ddebd7" />
+          <rect x="9" y="22" width="23" height="6" fill="#ddebd7" />
+          <circle cx="5" cy="10" r="1.8" fill="#22302a" />
+          <circle cx="5" cy="18" r="1.8" fill="#22302a" />
+          <circle cx="5" cy="26" r="1.8" fill="#22302a" />
+        </svg>
+        <span>LV-Bepreiser</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          {nav.map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
+        </ul>
+      </nav>
+    </header>
+    <main id="inhalt">
+      <slot />
+    </main>
+    <footer class="wrap no-print site-footer">
+      <hr class="rule" />
+      <p class="figures">
+        <a href={url('impressum')}>Impressum</a> · <a href={url('datenschutz')}>Datenschutz</a> · <a href={url('hilfe')}>Hilfe</a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-block: var(--s-4);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-weight: 700;
+    font-size: var(--fs-h3);
+    text-decoration: none;
+  }
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-figures);
+    font-size: var(--fs-table);
+  }
+  nav a { display: inline-block; padding-block: var(--s-3); }
+  .site-footer { padding-bottom: var(--s-6); }
+</style>

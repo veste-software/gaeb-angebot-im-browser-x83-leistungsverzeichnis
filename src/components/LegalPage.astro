@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { legalHtml, type LegalKind } from '../lib/legal';
+import { url } from '../lib/paths';
+
+interface Props {
+  kind: LegalKind;
+  title: string;
+  description: string;
+}
+const { kind, title, description } = Astro.props;
+const de = legalHtml(kind, 'de');
+const en = legalHtml(kind, 'en');
+if (!de) console.warn(`[legal] src/content/legal/ has no German ${kind} file yet; the studio installs it.`);
+---
+<Base title={title} description={description}>
+  <article class="wrap legal">
+    {de && <div set:html={de} />}
+    {en && (
+      <>
+        <hr class="rule" />
+        <section lang="en" id="english">
+          <div set:html={en} />
+        </section>
+      </>
+    )}
+    <p class="no-print"><a href={url()}>Zurück zum LV-Bepreiser</a></p>
+  </article>
+</Base>
+
+<style>
+  .legal { padding-block: var(--s-6); max-width: calc(var(--measure) + 2 * var(--s-5)); margin-inline: 0; }
+</style>
