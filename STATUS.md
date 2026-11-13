@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** planned · **Platform:** web · **Score:** 3.2/5 · **Spend:** $3.39
+**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $7.78
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -70,3 +70,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 21:18 · scouted · ranked first in the daily pool (aggregate 3.55 of 5 by 2 independent rankers); the studio builds the day's best candidate whatever its score, and the prototype is how it is judged
 - 2026-11-13 21:30 · specced · spec written
 - 2026-11-13 21:41 · planned · scaffold and plan written
+- 2026-11-13 22:08 · building · build started
