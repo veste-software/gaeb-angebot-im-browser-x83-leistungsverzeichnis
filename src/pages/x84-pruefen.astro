@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PricingTool from '../components/PricingTool';
+---
+<Base
+  title="X84 prüfen: Angebotsdatei im Browser ansehen"
+  description="X84-Angebotsdatei im Browser öffnen: Positionen, Einheitspreise, Gesamtpreise, Summen und unbepreiste Positionen ansehen. Kostenlos, ohne Upload."
+>
+  <section class="wrap page-head">
+    <h1>X84 prüfen</h1>
+    <p class="lead">Öffnen Sie eine X84-Datei und sehen Sie Positionen, Preise, Summen und Positionen ohne Preis. Diese Seite ändert nichts an der Datei.</p>
+  </section>
+
+  <section class="wrap tool-section" aria-label="X84-Datei ansehen">
+    <PricingTool client:load readOnly />
+  </section>
+
+  <section class="wrap prose">
+    <h2>Was geprüft wird</h2>
+    <p>Die Ansicht liest die Preise aus der Datei und rechnet Gesamtpreise und Summen neu. Positionen ohne Einheitspreis stehen in der Angebotsprüfung. Ob die Vergabestelle die Datei akzeptiert, kann das Werkzeug nicht beurteilen.</p>
+    <p>Die Datei wird nur in Ihrem Browser gelesen und nicht hochgeladen.</p>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-top: var(--s-6); padding-bottom: var(--s-4); }
+  .prose { max-width: var(--measure); margin-inline: 0; padding-bottom: var(--s-7); }
+  .prose h2 { margin-top: var(--s-6); }
+</style>

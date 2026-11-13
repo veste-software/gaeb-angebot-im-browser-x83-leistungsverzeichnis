@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/paths';
+const rows = [
+  ['GAEB-Online 2025', 'https://www.gaeb-online.de', '120 € einmalig, nur Windows, Installation nötig.'],
+  ['Wingaebxml Bietertool', 'https://www.wingaeb.de', 'Ab 125 € einmalig, Installation auf dem Rechner. Ansicht frei, Export kostenpflichtig.'],
+  ['mein.gaeb-365.online EDIT', 'https://www.softguide.de/programm/gaeblv/vorschau', 'Ab 19 bis 25 € pro Monat, Konto, Leistungsverzeichnis wird hochgeladen.'],
+  ['Dangl GAEB Converter (kostenlos)', 'https://www.dangl-it.com/articles/convert-gaeb-files-with-the-free-gaeb-converter', 'Umweg über Excel, Server-Upload, keine Prüfung auf fehlende Preise.'],
+];
+---
+<Base
+  title="Preise: X84 erstellen ab 19 € netto, ohne Abo"
+  description="Einzelangebot 19 € netto, Jahrespass 79 € netto, kein Abo. Öffnen, bepreisen, prüfen und drucken ist kostenlos; bezahlt wird nur der X84-Download."
+>
+  <section class="wrap page-head">
+    <h1>Preise</h1>
+    <p class="lead">Sie zahlen nur für den X84-Download. Kein Abo, keine automatische Verlängerung.</p>
+  </section>
+
+  <section class="wrap prose">
+    <table class="price-table">
+      <thead><tr><th>Angebot</th><th>Netto</th><th>Brutto (19 % USt)</th><th>Gilt für</th></tr></thead>
+      <tbody>
+        <tr><td>Einzelangebot</td><td>19,00 €</td><td>22,61 €</td><td>Ein Leistungsverzeichnis, 60 Tage</td></tr>
+        <tr><td>Jahrespass</td><td>79,00 €</td><td>94,01 €</td><td>Beliebig viele Leistungsverzeichnisse, 365 Tage</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Kostenlos</h2>
+    <p>Datei öffnen, Preise eintragen, Angebotsprüfung, Summen und die Druckansicht als PDF. Die X84-Datei selbst ist der kostenpflichtige Schritt.</p>
+
+    <h2>Bezahlung und Rechnung</h2>
+    <p>Die Zahlung läuft über Stripe. Die Rechnung kommt von Stripe per E-Mail. Der Freischaltcode wird nach der Zahlung angezeigt und in diesem Browser gespeichert; Sie können ihn auf einem anderen Gerät eingeben.</p>
+
+    <h2>Grenzen</h2>
+    <p>Unterstützt werden GAEB DA XML 3.1 bis 3.3 (X83 hinein, X84 heraus). Nicht unterstützt: D83, P83, ÖNORM, Preisaufgliederungen (UPComp), Stundenlohnlisten und Dateien mit mehr als einem Leistungsverzeichnis.</p>
+    <p>Das Werkzeug kann nicht garantieren, dass eine Vergabestelle Ihr Angebot akzeptiert. Gleichen Sie die Angebotssumme vor der Abgabe mit Ihrem Angebotsschreiben ab.</p>
+
+    <h2>Andere Wege zum X84</h2>
+    <table class="price-table">
+      <thead><tr><th>Alternative</th><th>Was für kleine Betriebe fehlt</th></tr></thead>
+      <tbody>
+        {rows.map(([name, href, note]) => (
+          <tr><td><a href={href} rel="noopener">{name}</a></td><td>{note}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <p>Angaben der Anbieter, Stand der Recherche; bitte auf den verlinkten Seiten prüfen.</p>
+    <p><a href={url()}>Zum Werkzeug</a></p>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-top: var(--s-6); padding-bottom: var(--s-4); }
+  .prose { max-width: 60rem; margin-inline: 0; padding-bottom: var(--s-7); }
+  .prose h2 { margin-top: var(--s-6); }
+  .price-table { width: 100%; border-collapse: collapse; margin-block: var(--s-4); }
+  .price-table th, .price-table td { text-align: left; padding: var(--s-2) var(--s-3); border-bottom: var(--rule-dotted); vertical-align: top; }
+  .price-table thead th { border-bottom: 2px solid currentColor; }
+</style>

@@ -14,6 +14,8 @@ import { TOKEN_KEY } from '../lib/storage.browser';
 import { startCheckout, type Product } from '../lib/unlock/checkout';
 import { verifyToken } from '../lib/unlock/token';
 import { track } from '../lib/track';
+import { renderPrintTable } from '../lib/gaeb/print';
+import { itemCountBucket, unsupportedCode } from '../lib/trackBuckets';
 
 const PUBLIC_KEY = (import.meta.env.PUBLIC_UNLOCK_KEY as string | undefined) ?? '';
 
@@ -32,7 +34,7 @@ function toPrices(inputs: Record<string, string>): Prices {
   return out;
 }
 
-export default function PricingTool() {
+export default function PricingTool({ readOnly = false }: { readOnly?: boolean }) {
   const [phase, setPhase] = useState<Phase>({ name: 'empty' });
   const [over, setOver] = useState(false);
   const [lv, setLv] = useState<Lv | null>(null);
@@ -62,6 +64,7 @@ export default function PricingTool() {
       const text = await file.text();
       const blocked = detectUnsupported(text);
       if (blocked.length > 0) {
+        track('lv_unsupported', { reason: unsupportedCode(blocked.map((b) => b.message)) });
         setPhase({ name: 'error', message: blocked.map((b) => b.message).join(' '), unsupported: true });
         return;
       }
@@ -87,6 +90,7 @@ export default function PricingTool() {
       setFileName(file.name);
       setInputs(start);
       setDownloaded(false);
+      track('lv_opened', { version: parsed.version, items: itemCountBucket(parsed.items.length) });
       setPhase({ name: 'done' });
     } catch (e) {
       setPhase({ name: 'error', message: e instanceof GaebParseError ? e.message : 'Die Datei konnte nicht gelesen werden.' });
@@ -116,6 +120,14 @@ export default function PricingTool() {
   }
 
   useEffect(() => { setToken(readToken()); }, []);
+
+  const fullyPriced = !!check && check.entries.every((e) => e.status !== 'blocking');
+  useEffect(() => { if (fullyPriced && fp) track('lv_fully_priced'); }, [fullyPriced, fp]);
+
+  function printSheet() {
+    track('print_opened');
+    window.print();
+  }
 
   useEffect(() => {
     if (!token || !fp || !PUBLIC_KEY) { setValid(false); return; }
@@ -273,6 +285,7 @@ export default function PricingTool() {
             placeholder="0,00"
             aria-label={`Einheitspreis Position ${n.oz}`}
             aria-invalid={invalid}
+            readOnly={readOnly}
             value={inputs[n.id] ?? ''}
             onInput={(e) => setEp(n.id, (e.currentTarget as HTMLInputElement).value)}
             onBlur={() => normalise(n.id)}
@@ -328,6 +341,11 @@ export default function PricingTool() {
           {check.entries.length > 12 && <p class="muted">… und {check.entries.length - 12} weitere Hinweise</p>}
 
           {restored && <p role="status" class="muted">{restored}</p>}
+          <button type="button" class="btn btn-secondary" onClick={printSheet}>Drucken / Als PDF speichern</button>
+          {readOnly && (
+            <p class="muted">Nur Ansicht: Diese Seite ändert nichts an der Datei und erzeugt keine neue X84.</p>
+          )}
+          {!readOnly && <>
           <h2 class="label bidder-title">Ihre Firma</h2>
           {(['firma', 'strasse', 'plz', 'ort'] as const).map((k) => (
             <div class="field" key={k}>
@@ -366,7 +384,9 @@ export default function PricingTool() {
           )}
           {!dialog && payMsg && <p role="status">{payMsg}</p>}
           {downloaded && <p role="status">Gespeichert als {x84FileName(fileName)}. Bitte die Angebotssumme mit Ihrem Angebotsschreiben abgleichen.</p>}
+          </>}
         </aside>
+        <div class="print-only" dangerouslySetInnerHTML={{ __html: renderPrintTable(lv, prices, bidder, today) }} />
       </div>
     </div>
   );

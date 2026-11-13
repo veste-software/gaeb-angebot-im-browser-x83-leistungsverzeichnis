@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PricingTool from '../components/PricingTool';
+---
+<Base
+  title="X83 in PDF umwandeln: Leistungsverzeichnis mit Preisen drucken"
+  description="X83-Leistungsverzeichnis im Browser öffnen, Preise eintragen und die Preisliste als A4-PDF drucken. Kostenlos, die Datei bleibt auf Ihrem Rechner."
+>
+  <section class="wrap page-head">
+    <h1>X83 in PDF umwandeln</h1>
+    <p class="lead">Öffnen Sie die X83-Datei, tragen Sie optional Preise ein und wählen Sie „Drucken / Als PDF speichern“. Das Drucken ist kostenlos.</p>
+  </section>
+
+  <section class="wrap tool-section" aria-label="Leistungsverzeichnis drucken">
+    <PricingTool client:load />
+  </section>
+
+  <section class="wrap prose">
+    <h2>So kommt die Preisliste ins PDF</h2>
+    <p>Die Druckansicht ist eine A4-Tabelle im Hochformat mit Ordnungszahl, Kurztext, Menge, Einheit, Einheitspreis und Gesamtpreis, den Summen je Abschnitt, der Angebotssumme netto sowie Firmenname und Datum. Im Druckdialog Ihres Browsers wählen Sie als Drucker „Als PDF speichern“.</p>
+    <p>Die Langtexte der Positionen stehen nicht im Ausdruck. Sie bleiben in der Datei und in der Ansicht am Bildschirm.</p>
+    <p>Die Datei wird nur in Ihrem Browser gelesen und nicht hochgeladen.</p>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-top: var(--s-6); padding-bottom: var(--s-4); }
+  .prose { max-width: var(--measure); margin-inline: 0; padding-bottom: var(--s-7); }
+  .prose h2 { margin-top: var(--s-6); }
+</style>

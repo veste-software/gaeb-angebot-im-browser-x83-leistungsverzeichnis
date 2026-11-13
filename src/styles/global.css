@@ -41,6 +41,24 @@
 .lv .text { overflow-wrap: anywhere; }
 .total { margin-top: var(--s-5); }
 .total p { margin: 0; text-align: right; }
+/* Print view: only the price list on A4 */
+.print-only { display: none; }
+.tool__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+@page { size: A4 portrait; margin: 15mm; }
+@media print {
+  body * { visibility: hidden; }
+  .print-only, .print-only * { visibility: visible; }
+  .print-only { display: block; position: absolute; left: 0; top: 0; width: 100%; font-size: 9pt; color: #000; }
+  .print-only h1 { font-size: 14pt; margin: 0 0 4pt; }
+  .print-only table { width: 100%; border-collapse: collapse; }
+  .print-only th, .print-only td { padding: 2pt 4pt; text-align: left; vertical-align: top; border-bottom: 0.5pt solid #999; }
+  .print-only .num { text-align: right; white-space: nowrap; }
+  .print-only .p-cat th { padding-top: 8pt; }
+  .print-only .p-sum td { font-weight: 700; border-top: 1pt solid #000; }
+  .print-only tfoot td { font-weight: 700; border-top: 2pt double #000; font-size: 11pt; }
+  .print-only thead { display: table-header-group; }
+  .print-only tr { break-inside: avoid; }
+}
 @media (min-width: 1100px) {
   .tool__grid { grid-template-columns: minmax(0, 1fr) 320px; }
   .tool__side { position: sticky; top: var(--s-4); }
