@@ -14,6 +14,7 @@ import { TOKEN_KEY } from '../lib/storage.browser';
 import { startCheckout, type Product } from '../lib/unlock/checkout';
 import { verifyToken } from '../lib/unlock/token';
 import { track } from '../lib/track';
+import { url } from '../lib/paths';
 import { renderPrintTable } from '../lib/gaeb/print';
 import { itemCountBucket, unsupportedCode } from '../lib/trackBuckets';
 
@@ -248,15 +249,25 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
           </div>
         )}
         <div class={`dropzone${over ? ' is-over' : ''}`} {...dropProps}>
-          <p class="dropzone__heads" aria-hidden="true">OZ TEXT MENGE EH EP GP</p>
+          <div class="dropzone__sheet" aria-hidden="true">
+            <div class="dropzone__heads"><span>OZ</span><span>Text</span><span>Menge</span><span>EH</span><span>EP</span><span>GP</span></div>
+            <div class="dropzone__row"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="dropzone__row"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="dropzone__row"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="dropzone__main">
           <label class="btn btn-primary btn-large" for="lv-file">X83-Datei auswählen</label>
           <input id="lv-file" class="visually-hidden" type="file" accept=".x83,.X83,.x84,.X84,.xml,.d83,.D83,.p83,.P83" onChange={(e) => void open((e.currentTarget as HTMLInputElement).files?.[0])} />
           <p class="dropzone__hint">
-            oder .X83-Datei hierher ziehen
+            oder die Datei hierher ziehen
             <span class="dropzone__example">z. B. Leistungsverzeichnis_Malerarbeiten.X83</span>
           </p>
+          </div>
         </div>
-        <p class="privacy">Ihre Datei wird nur in diesem Browser verarbeitet und nicht hochgeladen.</p>
+        <div class="under-drop">
+          <p class="privacy">Ihre Datei wird nur in diesem Browser verarbeitet und nicht hochgeladen.</p>
+          <p class="price-line">Öffnen, bepreisen, drucken: kostenlos · X84-Datei: 19&nbsp;€ netto pro Angebot (<a href={url('preise')}>Preise</a>)</p>
+        </div>
       </div>
     );
   }

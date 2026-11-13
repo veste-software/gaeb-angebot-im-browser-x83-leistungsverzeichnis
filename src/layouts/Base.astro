@@ -15,8 +15,8 @@ const nav = [
   { href: 'x84-erstellen', label: 'X84 erstellen' },
   { href: 'x83-in-pdf', label: 'X83 in PDF' },
   { href: 'x84-pruefen', label: 'X84 prüfen' },
-  { href: 'preise', label: 'Preise' },
-  { href: 'hilfe', label: 'Hilfe' },
+  { href: 'preise', label: 'Preise', always: true },
+  { href: 'hilfe', label: 'Hilfe', always: true },
 ];
 ---
 <!doctype html>
@@ -49,7 +49,7 @@ const nav = [
       </a>
       <nav aria-label="Hauptnavigation">
         <ul>
-          {nav.map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
+          {nav.map((n) => <li class={n.always ? undefined : 'nav-opt'}><a href={url(n.href)}>{n.label}</a></li>)}
         </ul>
       </nav>
     </header>
@@ -58,6 +58,11 @@ const nav = [
     </main>
     <footer class="wrap no-print site-footer">
       <hr class="rule" />
+      <nav class="footer-nav" aria-label="Seiten">
+        <ul>
+          {nav.map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
+        </ul>
+      </nav>
       <p class="figures">
         <a href={url('impressum')}>Impressum</a> · <a href={url('datenschutz')}>Datenschutz</a> · <a href={url('hilfe')}>Hilfe</a>
       </p>
@@ -93,5 +98,10 @@ const nav = [
     font-size: var(--fs-table);
   }
   nav a { display: inline-block; padding-block: var(--s-3); }
+  @media (max-width: 699px) {
+    .site-header { flex-wrap: nowrap; min-height: 56px; padding-block: var(--s-2); gap: var(--s-3); }
+    .site-header nav ul { flex-wrap: nowrap; gap: var(--s-4); }
+    .brand span { font-size: var(--fs-body); }
+  }
   .site-footer { padding-bottom: var(--s-6); }
 </style>

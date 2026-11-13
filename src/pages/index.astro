@@ -23,60 +23,59 @@ const jsonLd = {
 >
   <section class="wrap intro">
     <div class="intro__text">
-      <h1>X83-Datei öffnen, Preise eintragen, als X84 abgeben.</h1>
-      <p class="lead">Sie sehen Ihr Leistungsverzeichnis in Sekunden, tragen die Einheitspreise ein und erhalten eine geprüfte X84-Datei für die Vergabeplattform.</p>
+      <span class="eyebrow">GAEB DA XML 3.1–3.3 · X83 → X84</span>
+      <h1>X83-Datei ausfüllen und als X84 abgeben</h1>
+      <p class="lead">Leistungsverzeichnis öffnen, Einheitspreise eintragen, Summen prüfen – und die fertige X84-Datei für die Vergabeplattform speichern. Ohne Installation, ohne Konto.</p>
     </div>
     <img class="intro__art" src={url('art/hero.svg')} width="460" height="276" alt="" />
   </section>
 
   <section class="wrap tool-section" aria-label="Leistungsverzeichnis bepreisen">
     <PricingTool client:load />
+    <img class="intro-art-phone" src={url('art/hero.svg')} width="460" height="276" alt="" />
   </section>
 
   <section class="wrap steps" aria-labelledby="steps-title">
     <h2 id="steps-title">So läuft es ab</h2>
-    <ol class="steps__list">
+    <ol class="steps-lv">
       <li>
-        <img src={url('art/spot-1.svg')} width="120" height="120" alt="" loading="lazy" />
-        <h3>X83-Datei öffnen</h3>
-        <p>Die Datei der Ausschreibung wählen oder auf das Feld ziehen. Sie wird nur in Ihrem Browser gelesen.</p>
+        <img src={url('art/spot-1.svg')} width="200" height="200" alt="" loading="lazy" />
+        <span class="oz">01</span>
+        <div><h3>Datei öffnen</h3><p>Ihr Leistungsverzeichnis erscheint als Tabelle. Die Datei wird nur in Ihrem Browser gelesen.</p></div>
+        <span class="price">0,00&nbsp;€</span>
       </li>
       <li>
-        <img src={url('art/spot-2.svg')} width="120" height="120" alt="" loading="lazy" />
-        <h3>Preise eintragen</h3>
-        <p>Einheitspreise tippen, mit der Eingabetaste zur nächsten Position. Summen stehen sofort da.</p>
+        <img src={url('art/spot-2.svg')} width="200" height="200" alt="" loading="lazy" />
+        <span class="oz">02</span>
+        <div><h3>Preise eintragen</h3><p>Summen und fehlende Positionen sehen Sie sofort. Drucken und als PDF speichern.</p></div>
+        <span class="price">0,00&nbsp;€</span>
       </li>
       <li>
-        <img src={url('art/spot-3.svg')} width="120" height="120" alt="" loading="lazy" />
-        <h3>X84 herunterladen</h3>
-        <p>Die Angebotsprüfung zeigt, was fehlt. Danach speichern Sie die X84-Datei in der Version der Ausschreibung.</p>
+        <img src={url('art/spot-3.svg')} width="200" height="200" alt="" loading="lazy" />
+        <span class="oz">03</span>
+        <div><h3>X84 abgeben</h3><p>Die geprüfte Datei für die Vergabeplattform herunterladen.</p></div>
+        <span class="price">19,00&nbsp;€ netto</span>
       </li>
     </ol>
   </section>
 
   <section class="wrap facts">
     <h2>Was kostet es, was wird gelesen?</h2>
-    <p><strong>Kostenlos:</strong> öffnen, bepreisen, prüfen, Summen, Druckansicht als PDF. <strong>Kostenpflichtig:</strong> nur der X84-Download, 19 € netto je Angebot oder 79 € netto für ein Jahr, kein Abo. <a href={url('preise')}>Mehr zu den Preisen</a></p>
-    <p><strong>Formate:</strong> GAEB DA XML 3.1 bis 3.3. X83 hinein, X84 heraus, in derselben Version. Nicht unterstützt: D83, P83 und ÖNORM-Dateien. Ob eine Vergabestelle Ihr Angebot annimmt, kann das Werkzeug nicht beurteilen.</p>
+    <p><strong>Kostenlos:</strong> öffnen, bepreisen, prüfen, Summen, Druckansicht als PDF. <strong>Kostenpflichtig:</strong> nur der X84-Download, 19&nbsp;€ netto je Angebot oder 79&nbsp;€ netto für ein Jahr, kein Abo. <a href={url('preise')}>Mehr zu den Preisen</a></p>
+    <div class="formats">
+      <p><strong>Liest:</strong> X83 (GAEB DA XML 3.1, 3.2, 3.3)</p>
+      <p><strong>Schreibt:</strong> X84 in derselben Version</p>
+      <p><strong>Nicht:</strong> D83, P83, ÖNORM</p>
+    </div>
+    <p class="muted">Ob eine Vergabestelle Ihr Angebot annimmt, kann das Werkzeug nicht beurteilen.</p>
   </section>
 </Base>
 
 <style>
-  .intro { display: grid; gap: var(--s-5); align-items: center; padding-top: var(--s-5); padding-bottom: var(--s-5); }
-  .intro h1 { max-width: 18ch; }
+  .intro { display: grid; gap: var(--s-5); padding-top: var(--s-5); }
+  .intro h1 { max-width: 20ch; }
+  @media (max-width: 899px) { .lead { font-size: 1.125rem; } }
   .steps, .facts { padding-bottom: var(--s-6); }
-  .steps__list { list-style: none; padding: 0; margin: var(--s-4) 0 0; display: grid; gap: var(--s-5); }
-  .steps__list li { display: grid; grid-template-columns: 96px 1fr; column-gap: var(--s-4); align-items: start; }
-  .steps__list img { grid-row: span 2; width: 96px; height: 96px; }
-  .steps__list h3, .steps__list p { margin: 0; }
   .facts p { max-width: var(--measure); }
-  @media (min-width: 900px) {
-    .steps__list { grid-template-columns: repeat(3, 1fr); }
-    .steps__list li { display: block; }
-  }
-  .intro__art { display: none; width: 100%; height: auto; }
-  @media (min-width: 900px) {
-    .intro { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-    .intro__art { display: block; max-height: 276px; }
-  }
+  @media (min-width: 900px) { .intro { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
 </style>
