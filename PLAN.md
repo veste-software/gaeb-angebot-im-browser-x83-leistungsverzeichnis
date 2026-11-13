@@ -117,5 +117,5 @@ A designer who looked at the real pages said: Looks like a calm, purpose-made to
 
 ## QA round 2
 
-- [ ] [QA round 2] X84 output and synthetic X83 fixtures are not validated against the official GAEB XSDs. tests/fixtures/gaeb/official/ does not exist, xmllint is not installed, test:schema cannot pass, and element na… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,161, tests/schema/xsd.test.ts)
-- [ ] [QA round 2] npm audit --omit=dev reports 1 critical (astro <=7.4.6), 3 high (sharp, zod, esbuild) and 1 low, with a fix available (astro 7.4.12). Upgrade astro, its integrations and sharp, then re-run test, buil… (package.json (astro ^5.13.0), package-lock.json)
+- [~] [QA round 2] X84 output and synthetic X83 fixtures are not validated against the official GAEB XSDs. tests/fixtures/gaeb/official/ does not exist, xmllint is not installed, test:schema cannot pass, and element na… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,161, tests/schema/xsd.test.ts) (BLOCKED: needs network for npm run fetch:gaeb and xmllint; no web access in the builder shell)
+- [~] [QA round 2] npm audit --omit=dev reports 1 critical (astro <=7.4.6), 3 high (sharp, zod, esbuild) and 1 low, with a fix available (astro 7.4.12). Upgrade astro, its integrations and sharp, then re-run test, buil… (package.json (astro ^5.13.0), package-lock.json) (BLOCKED: major upgrade of astro/sharp needs registry access, not available here)
