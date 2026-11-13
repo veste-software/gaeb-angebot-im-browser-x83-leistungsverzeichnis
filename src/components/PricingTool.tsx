@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { Category, Item, Lv } from '../lib/gaeb/model';
 import { GaebParseError, parseGaeb } from '../lib/gaeb/parse';
+import { decodeGaeb } from '../lib/gaeb/decode';
 import { detectUnsupported } from '../lib/gaeb/unsupported';
 import { computeTotals, excludedReason, type Prices } from '../lib/gaeb/totals';
 import { centsToInput, formatEUR, formatQty, parseGermanNumber, toCents } from '../lib/gaeb/number';
@@ -64,7 +65,7 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
     if (!file) return;
     setPhase({ name: 'reading', file: file.name });
     try {
-      const text = await file.text();
+      const text = decodeGaeb(await file.arrayBuffer());
       const blocked = detectUnsupported(text);
       if (blocked.length > 0) {
         track('lv_unsupported', { reason: unsupportedCode(blocked.map((b) => b.message)) });
@@ -186,12 +187,17 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
     }
   }
 
-  function applyCode() {
+  async function applyCode() {
     const c = codeInput.trim();
     if (!c) return;
+    const p = PUBLIC_KEY && fp ? await verifyToken(c, PUBLIC_KEY, { fingerprint: fp, now: Math.floor(Date.now() / 1000) }) : null;
+    if (!p) {
+      setPayMsg('Dieser Code ist ungültig, abgelaufen oder gehört zu einem anderen Leistungsverzeichnis. Bitte prüfen Sie ihn auf Tippfehler.');
+      return;
+    }
     try { localStorage.setItem(TOKEN_KEY, c); } catch { /* ignore */ }
     setToken(c);
-    setPayMsg('Code gespeichert und geprüft.');
+    setPayMsg('Code geprüft und gespeichert.');
   }
 
   function download() {
