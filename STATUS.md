@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $9.24
+**Stage:** seo · **Platform:** web · **Score:** 3.2/5 · **Spend:** $9.51
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -20,6 +20,8 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 10] Register a domain, connect Cloudflare Pages and set SITE_URL
 - [ ] [task 11] Before going live, import one exported X84 into a real AVA program and run the bvbs.de GAEB-XML-Checker on it
 - [ ] [task 12] Add the site to Google Search Console and submit the sitemap; switch Stripe to live mode only after the steps above
+- [ ] [task 13] Blocked: 14. Official fixtures script: run npm run fetch:gaeb (Builder has no network access; the human must run npm run fetch:gaeb once to download the official GAEB samples and XSDs.)
+- [ ] [task 14] Blocked: 15. Schema tests: run npm run test:schema and fix element names (Needs the official XSDs from task 14 and xmllint; test is written but could not run, so the XSD-TODO marks are still unverified.)
 
 ## Recommendation
 
@@ -71,3 +73,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 21:30 · specced · spec written
 - 2026-11-13 21:41 · planned · scaffold and plan written
 - 2026-11-13 22:08 · building · build started
+- 2026-11-13 22:48 · seo · all planned tasks done
