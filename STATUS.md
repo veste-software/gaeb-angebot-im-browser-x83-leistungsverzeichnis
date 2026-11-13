@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** qa · **Platform:** web · **Score:** 3.2/5 · **Spend:** $12.54
+**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $12.76
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -35,6 +35,9 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 25] Blocked: [QA round 1] Official GAEB samples and XSDs are missing (Needs network access to run npm run fetch:gaeb; the builder has no web access. A human must run it and commit the fixtures.)
 - [ ] [task 26] Blocked: [QA round 1] Official GAEB samples and XSDs are missing (Needs network to run `npm run fetch:gaeb`; the builder has no web access. XSD-TODO element names stay unverified until then.)
 - [ ] [task 27] Blocked: [QA round 1] npm audit: upgrade astro, sharp, zod, esbuild (npm audit and major dependency upgrades need registry access, which this shell does not have.)
+- [ ] [task 28] Install libxml2-utils (xmllint) on the build machine, run `npm run fetch:gaeb` once with network access, and commit tests/fixtures/gaeb/official/ (XSDs, samples, SOURCE.md).
+- [ ] [task 29] Create a Stripe account, add test-mode keys and prices as STRIPE_SECRET_KEY, STRIPE_PRICE_SINGLE and STRIPE_PRICE_YEAR, generate an Ed25519 keypair for UNLOCK_SIGNING_KEY and PUBLIC_UNLOCK_KEY, and set SITE_URL in Cloudflare Pages.
+- [ ] [task 30] Before going live, send one real X84 from the tool to an eVergabe platform or the BVBS GAEB XML checker to confirm it is accepted.
 
 ## Recommendation
 
@@ -82,7 +85,6 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 
 ## History
 
-- 2026-11-13 21:18 · scouted · ranked first in the daily pool (aggregate 3.55 of 5 by 2 independent rankers); the studio builds the day's best candidate whatever its score, and the prototype is how it is judged
 - 2026-11-13 21:30 · specced · spec written
 - 2026-11-13 21:41 · planned · scaffold and plan written
 - 2026-11-13 22:08 · building · build started
@@ -94,3 +96,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 23:34 · qa · all planned tasks done
 - 2026-11-13 23:40 · building · visual review round 2: average 3.8
 - 2026-11-13 23:46 · qa · all planned tasks done
+- 2026-11-13 23:52 · building · QA round 2 found 2 blocker(s)
