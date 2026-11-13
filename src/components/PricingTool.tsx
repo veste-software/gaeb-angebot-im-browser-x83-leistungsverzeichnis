@@ -52,6 +52,8 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
   const [codeInput, setCodeInput] = useState('');
   const [busy, setBusy] = useState(false);
   const sheetRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
 
   const prices = useMemo(() => toPrices(inputs), [inputs]);
   const totals = useMemo(() => (lv ? computeTotals(lv, prices) : null), [lv, prices]);
@@ -120,6 +122,23 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
   }
 
   useEffect(() => { setToken(readToken()); }, []);
+
+  useEffect(() => {
+    if (!dialog) return;
+    opener.current = document.activeElement as HTMLElement | null;
+    dialogRef.current?.querySelector<HTMLElement>('button:not([disabled]), input')?.focus();
+    return () => opener.current?.focus();
+  }, [dialog]);
+
+  function trapTab(e: KeyboardEvent) {
+    if (e.key === 'Escape') { setDialog(false); return; }
+    if (e.key !== 'Tab') return;
+    const f = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), input, a[href]') ?? []);
+    if (f.length === 0) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 
   const fullyPriced = !!check && check.entries.every((e) => e.status !== 'blocking');
   useEffect(() => { if (fullyPriced && fp) track('lv_fully_priced'); }, [fullyPriced, fp]);
@@ -358,7 +377,7 @@ export default function PricingTool({ readOnly = false }: { readOnly?: boolean }
           {!check.canExport && <p class="muted">Der Export ist frei, sobald kein Punkt mit [!] mehr offen ist.</p>}
           <button type="button" class="btn btn-secondary" onClick={() => void wipe()}>Alles löschen</button>
           {dialog && (
-            <dialog open class="notice" aria-labelledby="pay-title" onKeyDown={(e) => { if (e.key === 'Escape') setDialog(false); }}>
+            <dialog open ref={dialogRef} class="notice" aria-labelledby="pay-title" aria-modal="true" onKeyDown={trapTab}>
               <h2 id="pay-title" class="label">Zusammenfassung</h2>
               <p>{lv.items.length} Positionen, Angebotssumme netto {formatEUR(totals.net)}. Bitte die Angebotssumme mit Ihrem Angebotsschreiben abgleichen.</p>
               {valid ? (

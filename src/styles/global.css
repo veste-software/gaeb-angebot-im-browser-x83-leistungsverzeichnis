@@ -36,7 +36,7 @@
 .tool-error { margin-bottom: var(--s-5); }
 .lv .ep .fill-in--ep { width: 100%; max-width: 13ch; }
 .lv-row details { margin-top: var(--s-1); }
-.lv-row summary { cursor: pointer; font-size: var(--fs-small); color: var(--ink-muted); min-height: 32px; }
+.lv-row summary { cursor: pointer; font-size: var(--fs-small); color: var(--ink-muted); min-height: 48px; display: flex; align-items: center; }
 .lv-row .longtext { margin: var(--s-1) 0; white-space: pre-line; font-family: var(--font-text); }
 .lv .text { overflow-wrap: anywhere; }
 .total { margin-top: var(--s-5); }

@@ -51,8 +51,8 @@ Read `SPEC.md`, `DESIGN.md` and `CLAUDE.md` first. Order: a thin, working tool e
 ## Analytics, accessibility, performance
 
 - [x] 28. **Analytics events:** call `track()` from `src/lib/track.ts` for `lv_opened` (props: version, item-count bucket), `lv_unsupported` (reason code), `lv_fully_priced`, `print_opened`, `checkout_started` (product), `unlock_ok`, `x84_exported`. Never project names, texts or prices. Test that `track` is a no-op without `window.plausible`.
-- [ ] 29. **Accessibility:** every input has a visible label (EP inputs: `aria-label="Einheitspreis Position 01.0010"`), drop area operable by keyboard, check-panel links move focus, dialog traps focus and closes on Escape, contrast ≥ 4.5:1 for every token pair in use, layout works at 360 px (two-line rows), controls ≥ 48 px, `prefers-reduced-motion` respected.
-- [ ] 30. **Performance:** `npm run build && npm run size` stays under the 120 KB gzipped JS budget; the island is the only JS on content pages that need it; fonts limited to the five weights in `Base.astro`.
+- [x] 29. **Accessibility:** every input has a visible label (EP inputs: `aria-label="Einheitspreis Position 01.0010"`), drop area operable by keyboard, check-panel links move focus, dialog traps focus and closes on Escape, contrast ≥ 4.5:1 for every token pair in use, layout works at 360 px (two-line rows), controls ≥ 48 px, `prefers-reduced-motion` respected.
+- [x] 30. **Performance:** `npm run build && npm run size` stays under the 120 KB gzipped JS budget; the island is the only JS on content pages that need it; fonts limited to the five weights in `Base.astro`.
 
 ## GAEB reference (from memory; verify against the official XSDs in task 15)
 
