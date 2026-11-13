@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $11.67
+**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $11.79
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -32,6 +32,7 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 22] Create a Stripe account in test mode with two one-off prices (19 EUR and 79 EUR net), and set STRIPE_SECRET_KEY, STRIPE_PRICE_SINGLE and STRIPE_PRICE_YEAR in Cloudflare Pages.
 - [ ] [task 23] Generate an Ed25519 keypair: private key as UNLOCK_SIGNING_KEY (secret), public key as PUBLIC_UNLOCK_KEY (also set at build time), and set SITE_URL.
 - [ ] [task 24] Before going live, import one exported X84 into a real AVA program and run the official GAEB XML checker from bvbs.de on it.
+- [ ] [task 25] Blocked: [QA round 1] Official GAEB samples and XSDs are missing (Needs network access to run npm run fetch:gaeb; the builder has no web access. A human must run it and commit the fixtures.)
 
 ## Recommendation
 
