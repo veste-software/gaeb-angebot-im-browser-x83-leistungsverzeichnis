@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $11.79
+**Stage:** qa · **Platform:** web · **Score:** 3.2/5 · **Spend:** $11.95
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -33,6 +33,8 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 23] Generate an Ed25519 keypair: private key as UNLOCK_SIGNING_KEY (secret), public key as PUBLIC_UNLOCK_KEY (also set at build time), and set SITE_URL.
 - [ ] [task 24] Before going live, import one exported X84 into a real AVA program and run the official GAEB XML checker from bvbs.de on it.
 - [ ] [task 25] Blocked: [QA round 1] Official GAEB samples and XSDs are missing (Needs network access to run npm run fetch:gaeb; the builder has no web access. A human must run it and commit the fixtures.)
+- [ ] [task 26] Blocked: [QA round 1] Official GAEB samples and XSDs are missing (Needs network to run `npm run fetch:gaeb`; the builder has no web access. XSD-TODO element names stay unverified until then.)
+- [ ] [task 27] Blocked: [QA round 1] npm audit: upgrade astro, sharp, zod, esbuild (npm audit and major dependency upgrades need registry access, which this shell does not have.)
 
 ## Recommendation
 
@@ -89,3 +91,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 23:00 · building · visual review round 1: ease 3, average 3.2
 - 2026-11-13 23:06 · qa · all planned tasks done
 - 2026-11-13 23:22 · building · QA round 1 found 5 blocker(s)
+- 2026-11-13 23:34 · qa · all planned tasks done
