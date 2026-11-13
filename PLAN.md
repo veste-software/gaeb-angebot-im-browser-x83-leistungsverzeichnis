@@ -93,8 +93,11 @@ A designer who looked at the real pages said: Looks like a real tool made for te
 
 ## QA round 1
 
-- [ ] [QA round 1] Official GAEB samples and XSDs are missing (criteria 1, 2, 7, 15). X84 element names and order (UP, IT, Totals, CTR, alternative/Bedarf markers) are still XSD-TODO and the synthetic X83 fixtures were… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,153, tests/schema/xsd.test.ts)
-- [ ] [QA round 1] Bidder text complements (TextComplement) are not parsed, not listed in the check panel and not written in the X84; no lump-sum or Zulage flag either. SPEC §5 and §6 require them. Implement in parse.t… (src/lib/gaeb/parse.ts, check.ts, export84.ts)
+- [~] [QA round 1] Official GAEB samples and XSDs are missing (criteria 1, 2, 7, 15). X84 element names and order (UP, IT, Totals, CTR, alternative/Bedarf markers) are still XSD-TODO and the synthetic X83 fixtures were… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,153, tests/schema/xsd.test.ts) (BLOCKED: needs network to run npm run fetch:gaeb for the official samples and XSDs; the builder has no web access)
+- [x] [QA round 1] Bidder text complements (TextComplement) are not parsed, not listed in the check panel and not written in the X84; no lump-sum or Zulage flag either. SPEC §5 and §6 require them. Implement in parse.t… (src/lib/gaeb/parse.ts, check.ts, export84.ts)
 - [x] [QA round 1] Files are read with file.text() (always UTF-8). ISO-8859-1 or windows-1252 GAEB files lose umlauts and the damaged text goes into the X84. Read arrayBuffer, take the encoding from the XML declaration… (src/components/PricingTool.tsx:67)
 - [x] [QA round 1] Entering any Freischaltcode shows 'Code gespeichert und geprüft.' without verifying it; an invalid, expired or wrong-LV code gives no error. Verify with verifyToken first and show a clear German erro… (src/components/PricingTool.tsx:189-195)
-- [ ] [QA round 1] npm audit --omit=dev reports 1 critical (astro), 3 high (sharp, zod, esbuild) and 1 low, with fixes available via --force. Upgrade astro, its integrations and sharp, re-run test, build and build:prev… (package.json, package-lock.json)
+- [~] [QA round 1] npm audit --omit=dev reports 1 critical (astro), 3 high (sharp, zod, esbuild) and 1 low, with fixes available via --force. Upgrade astro, its integrations and sharp, re-run test, build and build:prev… (package.json, package-lock.json) (BLOCKED: npm audit and major upgrades of astro/sharp need registry access, not available in this shell)
+
+
+- QA round 1 text complements: TextComplement is parsed (item.complements), listed as a warning in the check panel and kept unchanged in the X84 (the export clones the file). Editing the complement text in the UI, and lump-sum/Zulage flags, are not built: element names unverified until the official XSDs are present.

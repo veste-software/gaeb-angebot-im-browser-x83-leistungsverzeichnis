@@ -12,6 +12,8 @@ export interface Item {
   alternative: boolean;
   /** Item is marked not applicable. */
   notAppl: boolean;
+  /** Bidder text complements (TextComplement) in the item; they stay unchanged in the X84. */
+  complements: string[];
   /** EP in cents if the file already carries one (X84). */
   up: number | null;
 }

@@ -31,6 +31,14 @@ export function desc(el: El, name: string): El | null {
   return null;
 }
 
+/** All descendants with the given local name. */
+export function descAll(el: El, name: string): El[] {
+  const out: El[] = [];
+  const all = el.getElementsByTagName('*');
+  for (let i = 0; i < all.length; i++) if (all[i].localName === name) out.push(all[i]);
+  return out;
+}
+
 /** Follow a chain of direct children. */
 export function path(el: El | null, ...names: string[]): El | null {
   let cur: El | null = el;
@@ -152,6 +160,7 @@ function parseItem(it: El, parentOz: string[]): Item {
     withoutTotal: text(path(it, 'Provis')) === 'WithoutTotal',
     alternative: aln > 0, // XSD-TODO: base item vs. alternative marking
     notAppl: text(path(it, 'NotAppl')) === 'Yes',
+    complements: complete ? descAll(complete, 'TextComplement').map((c) => blockText(c)) : [],
     up: upTxt !== '' && Number.isFinite(Number(upTxt)) ? toCents(Number(upTxt)) : null,
   };
 }

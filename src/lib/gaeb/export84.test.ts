@@ -34,6 +34,22 @@ describe.each(readdirSync(dir).filter((f) => f.endsWith('.expected.json')))('exp
   });
 });
 
+describe('text complements', () => {
+  const xml = readFileSync(new URL('v33-full.X83', dir), 'utf8');
+  it('are parsed, flagged in the check and kept in the X84', async () => {
+    const lv = parseGaeb(xml);
+    const withC = lv.items.filter((i) => i.complements.length > 0);
+    expect(withC.length).toBeGreaterThan(0);
+    expect(withC[0].complements[0]).toContain('Fabrikat und Typ');
+    const prices: Prices = {};
+    for (const i of lv.items) prices[i.id] = 100;
+    const { checkBid } = await import('./check');
+    expect(checkBid(lv, prices, bidder).entries.some((e) => e.key === `c-${withC[0].id}`)).toBe(true);
+    const out = exportX84(xml, prices, bidder);
+    expect(parseGaeb(out).items.find((i) => i.id === withC[0].id)?.complements).toEqual(withC[0].complements);
+  });
+});
+
 describe('x84FileName', () => {
   it('swaps the extension', () => {
     expect(x84FileName('LV Maler.X83')).toBe('LV Maler.X84');

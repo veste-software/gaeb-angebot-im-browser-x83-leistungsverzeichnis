@@ -31,6 +31,11 @@ export function checkBid(lv: Lv, prices: Prices, bidder: Bidder): CheckResult {
       entries.push({ key: `z-${i.id}`, status: 'warning', text: `Position ${i.oz} ist mit 0,00 € bepreist`, itemId: i.id });
     }
   }
+  for (const i of lv.items) {
+    if (i.complements.length > 0 && !i.notAppl) {
+      entries.push({ key: `c-${i.id}`, status: 'warning', text: `Position ${i.oz} enthält eine Bieterergänzung (Textergänzung); sie bleibt unverändert in der X84`, itemId: i.id });
+    }
+  }
   if (!bidderComplete(bidder)) {
     entries.push({ key: 'bidder', status: 'blocking', text: 'Firma und Anschrift fehlen' });
   }
