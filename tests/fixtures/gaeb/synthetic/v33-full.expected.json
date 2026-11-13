@@ -1,0 +1,24 @@
+{
+  "version": "3.3",
+  "phase": 83,
+  "projectName": "Sanierung Rathaus Nord, Rohbau und Ausbau",
+  "itemCount": 9,
+  "categoryCount": 4,
+  "oz": ["01.01.0010", "01.01.0020", "01.02.0010", "01.02.0020", "02.0010", "02.0020", "02.0030", "02.0040", "02.0050"],
+  "qty": [12.5, 3.125, 5, 2, 100, 100, 20, 0, 7],
+  "qu": ["m²", "m³", "h", "h", "m²", "m²", "m", "St", "St"],
+  "shortText": [
+    "Mauerwerk herstellen, Größe 24 cm",
+    "Beton einbauen, Fußbodenplatte",
+    "Stundenlohnarbeiten Facharbeiter (Bedarf ohne Gesamtbetrag)",
+    "Stundenlohnarbeiten Helfer (Bedarf mit Gesamtbetrag)",
+    "Bodenbelag Linoleum (Grundposition)",
+    "Bodenbelag Parkett (Alternativposition)",
+    "Zulage Sockelleiste Hartholz zu Pos. 02.0010",
+    "Übergangsprofil, Fußleiste ß-fest (Menge 0)",
+    "Türzarge streichen"
+  ],
+  "prices": { "01.01.0010": 10, "01.01.0020": 33.33, "01.02.0010": 48.5, "01.02.0020": 50, "02.0010": 7.8, "02.0020": 9.4, "02.0030": 2.5, "02.0040": 4, "02.0050": 15.15 },
+  "gp": { "01.01.0010": 125, "01.01.0020": 104.16, "01.02.0010": 242.5, "01.02.0020": 100, "02.0010": 780, "02.0020": 940, "02.0030": 50, "02.0040": 0, "02.0050": 106.05 },
+  "netTotal": 1265.21
+}

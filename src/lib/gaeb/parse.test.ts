@@ -33,6 +33,19 @@ describe.each(names)('fixture %s', (file) => {
   });
 });
 
+describe.each(['v32-full.X83', 'v33-full.X83'])('full fixture %s', (file) => {
+  const lv = parseGaeb(readFileSync(new URL(file, dir), 'utf8'));
+  const byOz = (oz: string) => lv.items.find((i) => i.oz === oz)!;
+  it('flags Bedarf, alternative and zero-quantity items', () => {
+    expect(byOz('01.02.0010').withoutTotal).toBe(true);
+    expect(byOz('01.02.0020').withoutTotal).toBe(false);
+    expect(byOz('02.0010').alternative).toBe(false);
+    expect(byOz('02.0020').alternative).toBe(true);
+    expect(byOz('02.0040').qty).toBe(0);
+    expect(byOz('01.01.0020').qty).toBe(3.125);
+  });
+});
+
 describe('parse errors', () => {
   it('rejects non-GAEB input with a German message', () => {
     expect(() => parseGaeb('<html/>')).toThrow(/GAEB/);

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC test file, hand-written, not an official GAEB sample -->
+<GAEB xmlns="http://www.gaeb.de/GAEB_DA_XML/DA83/3.3">
+  <GAEBInfo>
+    <Version>3.3</Version>
+    <VersDate>2021-05</VersDate>
+    <ProgSystem>Testdatei</ProgSystem>
+  </GAEBInfo>
+  <PrjInfo>
+    <NamePrj>Sanierung Rathaus Nord, Rohbau und Ausbau</NamePrj>
+    <LblPrj>Vollständiges Testverzeichnis</LblPrj>
+    <Cur>EUR</Cur>
+  </PrjInfo>
+  <Award>
+    <DP>83</DP>
+    <OWN>
+      <Address>
+        <Name1>Gemeinde Musterstadt, Bauverwaltung</Name1>
+      </Address>
+    </OWN>
+    <BoQ ID="BoQ01">
+      <BoQInfo>
+        <Name>LV Sanierung</Name>
+        <BoQBkdn><Type>BoQLevel</Type><Length>2</Length></BoQBkdn>
+        <BoQBkdn><Type>BoQLevel</Type><Length>2</Length></BoQBkdn>
+        <BoQBkdn><Type>Item</Type><Length>4</Length></BoQBkdn>
+      </BoQInfo>
+      <BoQBody>
+        <BoQCtgy ID="C01" RNoPart="01">
+          <LblTx><p><span>Rohbauarbeiten</span></p></LblTx>
+          <BoQBody>
+            <BoQCtgy ID="C0101" RNoPart="01">
+              <LblTx><p><span>Mauerwerk</span></p></LblTx>
+              <BoQBody>
+                <Itemlist>
+                  <Item ID="I010110" RNoPart="0010">
+                    <Qty>12.500</Qty>
+                    <QU>m²</QU>
+                    <Description><CompleteText>
+                      <OutlineText><OutlTxt><TextOutlTxt><span>Mauerwerk herstellen, Größe 24 cm</span></TextOutlTxt></OutlTxt></OutlineText>
+                      <DetailTxt><Text><p><span>Mauerwerk aus Kalksandstein, Überbindemaß nach Norm.</span></p></Text></DetailTxt>
+                    </CompleteText></Description>
+                  </Item>
+                  <Item ID="I010120" RNoPart="0020">
+                    <Qty>3.125</Qty>
+                    <QU>m³</QU>
+                    <Description><CompleteText>
+                      <OutlineText><OutlTxt><TextOutlTxt><span>Beton einbauen, Fußbodenplatte</span></TextOutlTxt></OutlTxt></OutlineText>
+                    </CompleteText></Description>
+                  </Item>
+                </Itemlist>
+              </BoQBody>
+            </BoQCtgy>
+            <BoQCtgy ID="C0102" RNoPart="02">
+              <LblTx><p><span>Bedarfsleistungen</span></p></LblTx>
+              <BoQBody>
+                <Itemlist>
+                  <Item ID="I010210" RNoPart="0010">
+                    <Qty>5</Qty>
+                    <QU>h</QU>
+                    <Provis>WithoutTotal</Provis>
+                    <Description><CompleteText>
+                      <OutlineText><OutlTxt><TextOutlTxt><span>Stundenlohnarbeiten Facharbeiter (Bedarf ohne Gesamtbetrag)</span></TextOutlTxt></OutlTxt></OutlineText>
+                    </CompleteText></Description>
+                  </Item>
+                  <Item ID="I010220" RNoPart="0020">
+                    <Qty>2</Qty>
+                    <QU>h</QU>
+                    <Provis>WithTotal</Provis>
+                    <Description><CompleteText>
+                      <OutlineText><OutlTxt><TextOutlTxt><span>Stundenlohnarbeiten Helfer (Bedarf mit Gesamtbetrag)</span></TextOutlTxt></OutlTxt></OutlineText>
+                    </CompleteText></Description>
+                  </Item>
+                </Itemlist>
+              </BoQBody>
+            </BoQCtgy>
+          </BoQBody>
+        </BoQCtgy>
+        <BoQCtgy ID="C02" RNoPart="02">
+          <LblTx><p><span>Ausbau</span></p></LblTx>
+          <BoQBody>
+            <Itemlist>
+              <Item ID="I020010" RNoPart="0010">
+                <Qty>100</Qty>
+                <QU>m²</QU>
+                <ALNGrpNo>1</ALNGrpNo>
+                <ALNSerNo>0</ALNSerNo>
+                <Description><CompleteText>
+                  <OutlineText><OutlTxt><TextOutlTxt><span>Bodenbelag Linoleum (Grundposition)</span></TextOutlTxt></OutlTxt></OutlineText>
+                </CompleteText></Description>
+              </Item>
+              <Item ID="I020020" RNoPart="0020">
+                <Qty>100</Qty>
+                <QU>m²</QU>
+                <ALNGrpNo>1</ALNGrpNo>
+                <ALNSerNo>1</ALNSerNo>
+                <Description><CompleteText>
+                  <OutlineText><OutlTxt><TextOutlTxt><span>Bodenbelag Parkett (Alternativposition)</span></TextOutlTxt></OutlTxt></OutlineText>
+                </CompleteText></Description>
+              </Item>
+              <Item ID="I020030" RNoPart="0030">
+                <Qty>20</Qty>
+                <QU>m</QU>
+                <Description><CompleteText>
+                  <OutlineText><OutlTxt><TextOutlTxt><span>Zulage Sockelleiste Hartholz zu Pos. 02.0010</span></TextOutlTxt></OutlTxt></OutlineText>
+                </CompleteText></Description>
+              </Item>
+              <Item ID="I020040" RNoPart="0040">
+                <Qty>0</Qty>
+                <QU>St</QU>
+                <Description><CompleteText>
+                  <OutlineText><OutlTxt><TextOutlTxt><span>Übergangsprofil, Fußleiste ß-fest (Menge 0)</span></TextOutlTxt></OutlTxt></OutlineText>
+                </CompleteText></Description>
+              </Item>
+              <Item ID="I020050" RNoPart="0050">
+                <Qty>7</Qty>
+                <QU>St</QU>
+                <Description><CompleteText>
+                  <OutlineText><OutlTxt><TextOutlTxt><span>Türzarge streichen</span></TextOutlTxt></OutlTxt></OutlineText>
+                  <DetailTxt><Text><p><span>Farbton nach Wahl des Bieters.</span></p></Text></DetailTxt>
+                  <TextComplement>
+                    <p><span>Der Bieter ergänzt hier Fabrikat und Typ.</span></p>
+                  </TextComplement>
+                </CompleteText></Description>
+              </Item>
+            </Itemlist>
+          </BoQBody>
+        </BoQCtgy>
+      </BoQBody>
+    </BoQ>
+  </Award>
+</GAEB>
