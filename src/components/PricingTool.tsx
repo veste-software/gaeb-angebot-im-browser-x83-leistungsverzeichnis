@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { Category, Item, Lv } from '../lib/gaeb/model';
 import { GaebParseError, parseGaeb } from '../lib/gaeb/parse';
 import { detectUnsupported } from '../lib/gaeb/unsupported';
@@ -7,6 +7,9 @@ import { centsToInput, formatEUR, formatQty, parseGermanNumber, toCents } from '
 import { checkBid } from '../lib/gaeb/check';
 import { emptyBidder, exportX84, x84FileName, type Bidder } from '../lib/gaeb/export84';
 import { Stamp } from './Stamp';
+import { fingerprint } from '../lib/gaeb/fingerprint';
+import { clearAll, loadState, saveState } from '../lib/storage.browser';
+import { restoredMessage } from '../lib/saved';
 
 type Phase = { name: 'empty' } | { name: 'reading'; file: string } | { name: 'error'; message: string; unsupported?: boolean } | { name: 'done' };
 
@@ -28,6 +31,8 @@ export default function PricingTool() {
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [bidder, setBidder] = useState<Bidder>(emptyBidder);
   const [downloaded, setDownloaded] = useState(false);
+  const [fp, setFp] = useState('');
+  const [restored, setRestored] = useState('');
   const sheetRef = useRef<HTMLDivElement>(null);
 
   const prices = useMemo(() => toPrices(inputs), [inputs]);
@@ -51,6 +56,16 @@ export default function PricingTool() {
       if (parsed.items.length === 0) throw new GaebParseError('Die Datei enthält keine Positionen.');
       const start: Record<string, string> = {};
       for (const i of parsed.items) if (i.up != null) start[i.id] = centsToInput(i.up);
+      const key = await fingerprint(parsed);
+      const saved = await loadState(key);
+      if (saved) {
+        Object.assign(start, saved.inputs);
+        setBidder({ ...emptyBidder, ...saved.bidder });
+        setRestored(restoredMessage(saved.savedAt));
+      } else {
+        setRestored('');
+      }
+      setFp(key);
       setXml(text);
       setLv(parsed);
       setFileName(file.name);
@@ -94,6 +109,20 @@ export default function PricingTool() {
     a.click();
     URL.revokeObjectURL(url);
     setDownloaded(true);
+  }
+
+  useEffect(() => {
+    if (!fp || !lv) return;
+    const t = setTimeout(() => void saveState(fp, inputs, bidder), 400);
+    return () => clearTimeout(t);
+  }, [fp, lv, inputs, bidder]);
+
+  async function wipe() {
+    if (!window.confirm('Alle auf diesem Gerät gespeicherten Preise, Firmendaten und den Freischaltcode löschen?')) return;
+    await clearAll();
+    setInputs({});
+    setBidder(emptyBidder);
+    setRestored('');
   }
 
   function reset() {
@@ -233,6 +262,7 @@ export default function PricingTool() {
           </ul>
           {check.entries.length > 12 && <p class="muted">… und {check.entries.length - 12} weitere Hinweise</p>}
 
+          {restored && <p role="status" class="muted">{restored}</p>}
           <h2 class="label bidder-title">Ihre Firma</h2>
           {(['firma', 'strasse', 'plz', 'ort'] as const).map((k) => (
             <div class="field" key={k}>
@@ -243,6 +273,7 @@ export default function PricingTool() {
 
           <button type="button" class="btn btn-primary btn-large" disabled={!check.canExport} onClick={download}>X84 erstellen</button>
           {!check.canExport && <p class="muted">Der Export ist frei, sobald kein Punkt mit [!] mehr offen ist.</p>}
+          <button type="button" class="btn btn-secondary" onClick={() => void wipe()}>Alles löschen</button>
           {downloaded && <p role="status">Gespeichert als {x84FileName(fileName)}. Bitte die Angebotssumme mit Ihrem Angebotsschreiben abgleichen.</p>}
         </aside>
       </div>
