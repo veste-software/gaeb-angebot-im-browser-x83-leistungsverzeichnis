@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** qa · **Platform:** web · **Score:** 3.2/5 · **Spend:** $10.77
+**Stage:** building · **Platform:** web · **Score:** 3.2/5 · **Spend:** $11.67
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -28,6 +28,10 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 18] Set SITE_URL in the Cloudflare Pages build environment so the sitemap and canonical URLs are generated
 - [ ] [task 19] Submit a plain listing to GAEB tool directories such as softguide.de
 - [ ] [task 20] Check the live start page and /hilfe in Google's Rich Results Test
+- [ ] [task 21] Run `npm run fetch:gaeb` once on a machine with network access (installs the official GAEB samples and the X83/X84 XSDs for 3.1, 3.2 and 3.3 into tests/fixtures/gaeb/official/ and writes SOURCE.md), and install xmllint (libxml2-utils); then run `npm run test:schema`.
+- [ ] [task 22] Create a Stripe account in test mode with two one-off prices (19 EUR and 79 EUR net), and set STRIPE_SECRET_KEY, STRIPE_PRICE_SINGLE and STRIPE_PRICE_YEAR in Cloudflare Pages.
+- [ ] [task 23] Generate an Ed25519 keypair: private key as UNLOCK_SIGNING_KEY (secret), public key as PUBLIC_UNLOCK_KEY (also set at build time), and set SITE_URL.
+- [ ] [task 24] Before going live, import one exported X84 into a real AVA program and run the official GAEB XML checker from bvbs.de on it.
 
 ## Recommendation
 
@@ -83,3 +87,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 22:53 · qa · seo and conversion foundations written
 - 2026-11-13 23:00 · building · visual review round 1: ease 3, average 3.2
 - 2026-11-13 23:06 · qa · all planned tasks done
+- 2026-11-13 23:22 · building · QA round 1 found 5 blocker(s)
