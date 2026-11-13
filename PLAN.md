@@ -114,3 +114,8 @@ A designer who looked at the real pages said: Looks like a calm, purpose-made to
 - [x] [Visual round 2] In the 'So läuft es ab' rows on desktop, the OZ (01/02/03) and the price line up with the description, not the title: set align-items: baseline on .steps-lv > li (or align-self: start on .step-oz/.step-price with the same top margin as the h3) so OZ, title and price share one baseline
 - [x] [Visual round 2] Desktop 'Was kostet es, was wird gelesen?' fills only the left half: put the Liest/Schreibt/Nicht list in a second column at ≥900 px (grid 7/5 columns), or place spot-3.svg at 240 px on the right, so the section does not leave an empty half
 - [x] [Visual round 2] Footer is a bare link line, and on mobile the nav wraps unevenly with 'Hilfe' twice: start the footer with the .brand-lockup (logo at 32 px), set the nav as one evenly spaced list, drop the duplicate 'Hilfe' from the Impressum/Datenschutz line, and add the Lochrand pattern.svg as a 28 px strip abov…
+
+## QA round 2
+
+- [ ] [QA round 2] X84 output and synthetic X83 fixtures are not validated against the official GAEB XSDs. tests/fixtures/gaeb/official/ does not exist, xmllint is not installed, test:schema cannot pass, and element na… (tests/fixtures/gaeb/official/ (absent), src/lib/gaeb/export84.ts:6, src/lib/gaeb/parse.ts:5,161, tests/schema/xsd.test.ts)
+- [ ] [QA round 2] npm audit --omit=dev reports 1 critical (astro <=7.4.6), 3 high (sharp, zod, esbuild) and 1 low, with a fix available (astro 7.4.12). Upgrade astro, its integrations and sharp, then re-run test, buil… (package.json (astro ^5.13.0), package-lock.json)
