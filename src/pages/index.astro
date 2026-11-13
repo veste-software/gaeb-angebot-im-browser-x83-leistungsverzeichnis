@@ -2,8 +2,22 @@
 import Base from '../layouts/Base.astro';
 import PricingTool from '../components/PricingTool';
 import { url } from '../lib/paths';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'LV-Bepreiser',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Alle Systeme mit aktuellem Browser',
+  inLanguage: 'de',
+  description: 'X83-Leistungsverzeichnis im Browser öffnen, Einheitspreise eintragen und als X84-Angebot speichern. Die Datei wird nicht hochgeladen.',
+  offers: [
+    { '@type': 'Offer', name: 'Einzelangebot (X84-Export für ein LV)', price: '19.00', priceCurrency: 'EUR' },
+    { '@type': 'Offer', name: 'Jahrespass (365 Tage)', price: '79.00', priceCurrency: 'EUR' },
+  ],
+};
 ---
 <Base
+  jsonLd={jsonLd}
   title="X83-Datei öffnen, bepreisen und als X84 abgeben – im Browser"
   description="GAEB-Leistungsverzeichnis (X83) im Browser öffnen, Einheitspreise eintragen, Summen prüfen und als X84-Angebot speichern. Ohne Installation, die Datei bleibt auf Ihrem Rechner."
 >

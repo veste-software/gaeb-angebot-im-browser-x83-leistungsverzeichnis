@@ -10,8 +10,18 @@ const faq = [
   ['Warum ist „X84 erstellen“ gesperrt?', 'Solange eine Pflichtposition keinen Einheitspreis hat oder Ihre Firmenanschrift fehlt, bleibt der Export gesperrt. Die Angebotsprüfung neben der Liste zeigt, was noch offen ist; ein Klick springt zur Position.'],
   ['Kann das Werkzeug garantieren, dass mein Angebot angenommen wird?', 'Nein. Es erzeugt eine formal passende X84-Datei. Ob die Vergabestelle das Angebot akzeptiert, entscheidet sie selbst. Gleichen Sie die Angebotssumme mit Ihrem Angebotsschreiben ab.'],
 ];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(([q, a]) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 <Base
+  jsonLd={jsonLd}
   title="Hilfe zum LV-Bepreiser: Formate, Preise, Grenzen"
   description="Antworten zu GAEB-Versionen, nicht unterstützten Formaten, Datenschutz im Browser und zum Bepreisen von Bedarfs- und Wahlpositionen."
 >

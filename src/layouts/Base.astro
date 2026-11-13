@@ -7,8 +7,9 @@ import { url } from '../lib/paths';
 interface Props {
   title: string;
   description: string;
+  jsonLd?: Record<string, unknown>;
 }
-const { title, description } = Astro.props;
+const { title, description, jsonLd } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const nav = [
   { href: 'x84-erstellen', label: 'X84 erstellen' },
@@ -26,6 +27,16 @@ const nav = [
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="LV-Bepreiser" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <meta name="theme-color" content="#f4f6ee" />
     <Analytics />
