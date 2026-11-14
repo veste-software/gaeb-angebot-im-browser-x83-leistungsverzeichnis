@@ -1,6 +1,6 @@
 # GAEB-Angebot im Browser: X83-Leistungsverzeichnis bepreisen und als X84 abgeben
 
-**Stage:** qa · **Platform:** web · **Score:** 3.2/5 · **Spend:** $12.80
+**Stage:** parked · **Platform:** web · **Score:** 3.2/5 · **Spend:** $12.96
 
 For small trades (painters, electricians, roofers, landscapers) who get a GAEB X83 bill of quantities with a public tender and must return a priced X84 file: open, price and export in the browser, on any computer, with the file never leaving the device. If it takes off it becomes the bidding companion next to tender-notice pages (Formblatt 221/223, X89 invoices, Austrian ONLV).
 
@@ -8,6 +8,7 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 
 ## Needs you
 
+- [ ] Parked: QA still failing after 3 rounds: X84 output and synthetic X83 fixtures are not validated against the official GAEB XSDs. tests/fixtures/gaeb/official/ does not exist, xmllint is not installed, npm run test:schema cannot pass, and element names and order for UP, IT, Totals, CTR and the alternative marker are still XSD-TODO. Taking …. Fix it, then `npm run studio -- unpark gaeb-angebot-im-browser-x83-leistungsverzeichnis`, or `npm run studio -- kill gaeb-angebot-im-browser-x83-leistungsverzeichnis`
 - [ ] [task 1] Create two Stripe one-off prices (19 EUR and 79 EUR net plus 19% VAT), turn on Checkout invoice creation, and add STRIPE_SECRET_KEY, STRIPE_PRICE_SINGLE and STRIPE_PRICE_YEAR to Cloudflare Pages (test keys first)
 - [ ] [task 2] Generate an Ed25519 keypair and store it as UNLOCK_SIGNING_KEY (secret) and PUBLIC_UNLOCK_KEY in Cloudflare Pages
 - [ ] [task 3] Register a domain (~15 EUR/year), connect Cloudflare Pages and set SITE_URL
@@ -40,6 +41,10 @@ For small trades (painters, electricians, roofers, landscapers) who get a GAEB X
 - [ ] [task 30] Before going live, send one real X84 from the tool to an eVergabe platform or the BVBS GAEB XML checker to confirm it is accepted.
 - [ ] [task 31] Blocked: [QA round 2] Validate X84 output and synthetic X83 fixtures against official GAEB XSDs (Needs network to run npm run fetch:gaeb, and xmllint installed, to get tests/fixtures/gaeb/official/ and run test:schema.)
 - [ ] [task 32] Blocked: [QA round 2] npm audit: upgrade astro (<=7.4.6 critical), sharp, zod, esbuild (Major upgrade to astro 7.4.12 and integrations needs npm registry access, not available in the builder shell.)
+- [ ] [task 33] Install libxml2-utils (xmllint) on the build machine, run `npm run fetch:gaeb` once with network access, and commit tests/fixtures/gaeb/official/ including SOURCE.md.
+- [ ] [task 34] After the fixtures are in, have the Builder run `npm run test:schema` and fix element names and order in export84.ts and parse.ts until it is green.
+- [ ] [task 35] Run `npm audit fix --force` (astro 7.x) on a networked machine and re-run npm test, npm run build and npm run build:preview, or write a per-advisory note that a static build is not affected.
+- [ ] [task 36] Set up Stripe in test mode (STRIPE_SECRET_KEY, price IDs, PUBLIC_UNLOCK_KEY and the signing key in Cloudflare env) and do one test purchase end to end before going live.
 
 ## Recommendation
 
@@ -87,7 +92,6 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 
 ## History
 
-- 2026-11-13 21:41 · planned · scaffold and plan written
 - 2026-11-13 22:08 · building · build started
 - 2026-11-13 22:48 · seo · all planned tasks done
 - 2026-11-13 22:53 · qa · seo and conversion foundations written
@@ -99,3 +103,4 @@ one-off (Free: open X83/X84, price, live totals, bid check, print/PDF, local aut
 - 2026-11-13 23:46 · qa · all planned tasks done
 - 2026-11-13 23:52 · building · QA round 2 found 2 blocker(s)
 - 2026-11-13 23:58 · qa · all planned tasks done
+- 2026-11-14 00:03 · parked · QA still failing after 3 rounds: X84 output and synthetic X83 fixtures are not validated against the official GAEB XSDs. tests/fixtures/gaeb/official/ does not exist, xmllint is not installed, npm run test:schema cannot pass, and element names and order for UP, IT, Totals, CTR and the alternative marker are still XSD-TODO. Taking …
